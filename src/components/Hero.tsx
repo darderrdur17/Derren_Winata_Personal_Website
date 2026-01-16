@@ -215,11 +215,11 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up delay-600 z-20 pointer-events-auto">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up delay-600 z-20 pointer-events-auto hidden md:flex">
         <a
           href="#about"
           aria-label="Scroll to About section"
-          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-3 py-2 rounded-full bg-background/40 backdrop-blur border border-border/60"
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-4 py-2 rounded-full bg-background/40 backdrop-blur border border-border/60"
         >
           <span className="text-xs font-mono">Scroll Down</span>
           <ArrowDown size={20} className="animate-bounce" />
