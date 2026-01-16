@@ -28,11 +28,11 @@ const featuredProjects: Project[] = [
     featured: true,
   },
   {
-    title: "Vendura - Mobile App",
+    title: "Bassline - Nightlife Navigator",
     description:
-      "A Dart-based mobile application designed for enhanced user experience with modern UI/UX patterns and smooth animations.",
-    tech: ["Dart", "Flutter", "Mobile Development"],
-    github: "https://github.com/darderrdur17/Vendura",
+      "A nightlife discovery platform for San Francisco featuring interactive maps, search, and curated venue categories.",
+    tech: ["TypeScript", "React", "Leaflet"],
+    github: "https://github.com/darderrdur17/nightlife-navigator",
     featured: true,
   },
 ];
@@ -63,16 +63,16 @@ const otherProjects: Project[] = [
     github: "https://github.com/darderrdur17/SmartCart",
   },
   {
-    title: "Sustainability Extension",
-    description: "Browser extension promoting sustainable shopping choices with environmental impact scores.",
-    tech: ["JavaScript", "Chrome Extension"],
-    github: "https://github.com/darderrdur17/sustainability-extension",
+    title: "CodeMentor",
+    description: "Peer learning platform for matching mentors and mentees with guided learning paths.",
+    tech: ["React", "TypeScript", "UI/UX"],
+    github: "https://github.com/darderrdur17/CodeMentor",
   },
   {
-    title: "WhatsApp Bot",
-    description: "Automated WhatsApp messaging bot for business communications and customer support.",
-    tech: ["Node.js", "Automation"],
-    github: "https://github.com/darderrdur17/Whatsapp_Bot",
+    title: "Halal Food Landscape",
+    description: "Data exploration project mapping halal dining options and regional trends.",
+    tech: ["Python", "Data Analytics", "Visualization"],
+    github: "https://github.com/darderrdur17/Halal_food_landscape",
   },
 ];
 

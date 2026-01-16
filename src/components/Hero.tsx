@@ -74,7 +74,7 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
           ref={(node) => {
             parallaxRefs.current[0] = node;
@@ -103,7 +103,7 @@ const Hero = () => {
 
       {/* Grid pattern overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
           backgroundSize: '50px 50px'
@@ -118,8 +118,10 @@ const Hero = () => {
                 <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl opacity-70" />
                 <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-primary glow-primary">
                   <img
-                    src="/placeholder.svg"
-                    alt="Profile portrait"
+                    src="/images/profile-picture.jpeg"
+                    alt="Portrait of Derren Winata"
+                    loading="eager"
+                    decoding="async"
                     className="h-full w-full rounded-full object-cover bg-card"
                   />
                 </div>
@@ -213,8 +215,12 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up delay-600">
-        <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up delay-600 z-20 pointer-events-auto">
+        <a
+          href="#about"
+          aria-label="Scroll to About section"
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-3 py-2 rounded-full bg-background/40 backdrop-blur border border-border/60"
+        >
           <span className="text-xs font-mono">Scroll Down</span>
           <ArrowDown size={20} className="animate-bounce" />
         </a>
