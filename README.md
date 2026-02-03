@@ -1,73 +1,54 @@
-# Welcome to your Lovable project
+# Derren Winata | Data Science & Analytics — Portfolio
 
-## Project info
+A responsive single-page portfolio showcasing experience in data science, analytics, and software development. Built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Hero & About** — Introduction, role highlights, and bio
+- **Experience** — Timeline of roles (NUS, AI Singapore, Marina Bay Sands, Medisaya, Firsty.app)
+- **Featured case studies** — Impact-focused project summaries
+- **Projects** — Technical projects with GitHub links (360Cogni, EQ-5D-5L, Bassline, and more)
+- **Skills & certifications** — Tech stack and credentials
+- **Contact** — Form with validation and serverless email via Supabase
 
-There are several ways of editing your application.
+## Tech stack
 
-**Use Lovable**
+- **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui (Radix UI), React Router
+- **Backend / services:** Supabase (Edge Functions for contact form), Zod for validation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm (or [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) for installation)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Install and run locally
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
+cd derren-s-digital-showcase-main
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open the URL shown in the terminal (usually `http://localhost:5173`) in your browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Other scripts
 
-**Use GitHub Codespaces**
+- `npm run build` — Production build
+- `npm run preview` — Preview production build locally
+- `npm run lint` — Run ESLint
+- `npm run test` — Run tests
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deploying
 
-## What technologies are used for this project?
+Build the app with `npm run build`. The output is in the `dist/` folder. Deploy that folder to any static host (e.g. Vercel, Netlify, GitHub Pages, or your own server).
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Private project. All rights reserved.
