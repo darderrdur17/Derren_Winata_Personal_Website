@@ -68,12 +68,14 @@ const ContactForm = () => {
       }
 
       // Optional email notification — don't fail the form if this step errors
-      try {
-        await supabase.functions.invoke("send-contact-email", {
-          body: result.data,
-        });
-      } catch (emailError) {
-        console.warn("Email notification failed:", emailError);
+      if (supabase) {
+        try {
+          await supabase.functions.invoke("send-contact-email", {
+            body: result.data,
+          });
+        } catch (emailError) {
+          console.warn("Email notification failed:", emailError);
+        }
       }
 
       setSubmitStatus("success");
