@@ -24,8 +24,8 @@ const About = () => {
   const highlights = [
     { label: "Years of Experience", value: "2+" },
     { label: "Projects Completed", value: "30+" },
-    { label: "Companies Worked With", value: "5" },
-    { label: "Technologies Mastered", value: "15+" },
+    { label: "Companies Worked With", value: "8" },
+    { label: "Technologies Mastered", value: "25+" },
   ];
 
   return (
@@ -45,28 +45,18 @@ const About = () => {
               <p className="text-muted-foreground leading-relaxed">
                 I'm a Data Science and Analytics student at the{" "}
                 <span className="text-primary">National University of Singapore</span>,
-                passionate about leveraging data to drive impactful business decisions.
-                My journey in tech started with a curiosity for how numbers tell stories,
-                and it has evolved into expertise across data analytics, software development,
-                and business intelligence.
-              </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                Currently, I work as a{" "}
-                <span className="text-primary">Quality Assurance Student Assistant</span> at
-                AI Singapore and contribute as a{" "}
-                <span className="text-primary">Student Researcher</span> at NUS. Previously,
-                I've had the privilege of working at industry leaders like{" "}
-                <span className="text-primary">Marina Bay Sands</span> and innovative startups
-                like <span className="text-primary">Medisaya</span> and{" "}
-                <span className="text-primary">Firsty.app</span>.
+                building full-stack products, AI systems, and data pipelines that turn complex
+                problems into shipped solutions.
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                Beyond the technical realm, I'm actively involved in student organizations,
-                having served as General Secretary of NUS Buddhist Society and Outreach
-                Co-Director at NUSSU commIT. I believe in creating technology that serves
-                people and communities.
+                Currently at <span className="text-primary">AI Singapore</span>,{" "}
+                <span className="text-primary">360Cogni</span>, and{" "}
+                <span className="text-primary">NUS</span> — with prior experience at{" "}
+                <span className="text-primary">Marina Bay Sands</span>,{" "}
+                <span className="text-primary">Sunnystep</span>,{" "}
+                <span className="text-primary">Medisaya</span>, and{" "}
+                <span className="text-primary">Firsty.app</span>.
               </p>
 
               <div className="pt-4">
@@ -74,7 +64,7 @@ const About = () => {
                   Technologies I've been working with:
                 </p>
                 <ul className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {["Python", "React", "Django", "SQL", "Tableau", "Tealium IQ", "R", "Java", "Power Automate"].map((tech) => (
+                  {["Python", "TypeScript", "React", "Next.js", "FastAPI", "Supabase", "PostgreSQL", "Tailwind CSS", "LangGraph"].map((tech) => (
                     <li
                       key={tech}
                       className="flex items-center gap-2 text-muted-foreground text-sm"

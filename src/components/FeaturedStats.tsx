@@ -13,12 +13,12 @@ const stats = [
   },
   {
     label: "Industry Partners",
-    value: "5",
+    value: "8",
     icon: Users,
   },
   {
     label: "Tech Stack Depth",
-    value: "15+",
+    value: "25+",
     icon: Cpu,
   },
 ];

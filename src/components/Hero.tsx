@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
-const roles = ["Data Analyst", "Software Developer", "Problem Solver"];
+const roles = ["Full-Stack Developer", "Product Manager", "Data Analyst"];
 
 const Hero = () => {
   const [displayedRole, setDisplayedRole] = useState("");
@@ -158,7 +158,7 @@ const Hero = () => {
                 I'm a passionate data enthusiast at the{" "}
                 <span className="text-primary">National University of Singapore</span>,
                 specializing in transforming complex data into actionable insights.
-                Currently focused on eCommerce analytics, software development, and AI integration.
+                Currently focused on full-stack development, AI/LLM applications, and product management across health tech and public-sector platforms.
               </p>
 
               {/* CTA Buttons */}
