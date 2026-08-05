@@ -53,16 +53,18 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { error: dbError } = await supabase.from("contact_messages").insert({
-        name: result.data.name,
-        email: result.data.email,
-        subject: result.data.subject,
-        message: result.data.message,
+      const response = await fetch("/api/submit-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
       });
 
-      if (dbError) {
-        console.error("Error saving message:", dbError);
-        throw dbError;
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          typeof payload.error === "string" ? payload.error : "Failed to save message"
+        );
       }
 
       // Optional email notification — don't fail the form if this step errors
