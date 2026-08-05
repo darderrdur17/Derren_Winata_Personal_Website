@@ -67,6 +67,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    if (!RESEND_API_KEY) {
+      console.warn("RESEND_API_KEY not configured; skipping email notifications");
+      return new Response(
+        JSON.stringify({ success: true, message: "Email notifications disabled" }),
+        { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     console.log("Sending notification email for contact from:", name, email);
 
     // Send notification email to Derren

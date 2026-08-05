@@ -53,11 +53,26 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: result.data,
+      const { error: dbError } = await supabase.from("contact_messages").insert({
+        name: result.data.name,
+        email: result.data.email,
+        subject: result.data.subject,
+        message: result.data.message,
       });
 
-      if (error) throw error;
+      if (dbError) {
+        console.error("Error saving message:", dbError);
+        throw dbError;
+      }
+
+      // Optional email notification — don't fail the form if this step errors
+      try {
+        await supabase.functions.invoke("send-contact-email", {
+          body: result.data,
+        });
+      } catch (emailError) {
+        console.warn("Email notification failed:", emailError);
+      }
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -192,14 +207,14 @@ const ContactForm = () => {
       {submitStatus === "success" && (
         <div className="flex items-center gap-2 text-primary p-4 rounded-lg bg-primary/10 border border-primary/20">
           <CheckCircle size={20} />
-          <span>Message sent successfully! I'll get back to you soon.</span>
+          <span>Message saved successfully! I'll get back to you soon.</span>
         </div>
       )}
 
       {submitStatus === "error" && (
         <div className="flex items-center gap-2 text-destructive p-4 rounded-lg bg-destructive/10 border border-destructive/20">
           <AlertCircle size={20} />
-          <span>Failed to send message. Please try again or email me directly.</span>
+          <span>Failed to save your message. Please try again or email me directly.</span>
         </div>
       )}
     </form>
