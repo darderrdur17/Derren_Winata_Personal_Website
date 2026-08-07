@@ -43,14 +43,16 @@ const About = () => {
             {/* About Text */}
             <div className={`lg:col-span-3 space-y-6 ${isVisible ? "animate-slide-in-left delay-200" : "opacity-0"}`}>
               <p className="text-muted-foreground leading-relaxed">
-                I'm a Data Science and Analytics student at the{" "}
-                <span className="text-primary">National University of Singapore</span>,
-                building full-stack products, AI systems, and data pipelines that turn complex
-                problems into shipped solutions.
+                I'm a Data Science and Analytics graduate from the{" "}
+                <span className="text-primary">National University of Singapore</span>{" "}
+                (Aug 2026), building full-stack products, AI systems, and data pipelines that
+                turn complex problems into shipped solutions.
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                Currently at <span className="text-primary">AI Singapore</span>,{" "}
+                I'm currently looking for <span className="text-primary">full-time opportunities</span>{" "}
+                and am also open to <span className="text-primary">freelance project work</span>.
+                Recently at <span className="text-primary">AI Singapore</span>,{" "}
                 <span className="text-primary">360Cogni</span>, and{" "}
                 <span className="text-primary">NUS</span> — with prior experience at{" "}
                 <span className="text-primary">Marina Bay Sands</span>,{" "}
@@ -110,7 +112,10 @@ const About = () => {
                       B.Sc. Data Science & Analytics
                     </p>
                     <p className="text-muted-foreground text-sm mt-1">
-                      Aug 2022 - Present
+                      Aug 2022 – Aug 2026
+                    </p>
+                    <p className="text-primary/80 text-xs mt-1 font-medium">
+                      Graduated Aug 2026
                     </p>
                   </div>
                 </div>

@@ -155,10 +155,10 @@ const Hero = () => {
 
               {/* Description */}
               <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed opacity-0 animate-fade-in-up delay-300">
-                I'm a passionate data enthusiast at the{" "}
-                <span className="text-primary">National University of Singapore</span>,
-                specializing in transforming complex data into actionable insights.
-                Currently focused on full-stack development, AI/LLM applications, and product management across health tech and public-sector platforms.
+                NUS Data Science & Analytics graduate (Aug 2026), specializing in full-stack
+                development, AI/LLM applications, and product management. Currently looking for{" "}
+                <span className="text-primary">full-time roles</span> and open to{" "}
+                <span className="text-primary">freelance projects</span>.
               </p>
 
               {/* CTA Buttons */}

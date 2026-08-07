@@ -68,9 +68,9 @@ const Contact = () => {
                 Let's work together
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                I'm currently looking for new opportunities and my inbox is always open. 
-                Whether you have a question, want to discuss a project, or just want to say hi, 
-                I'll try my best to get back to you!
+                I'm looking for <span className="text-foreground font-medium">full-time opportunities</span>{" "}
+                and I'm also open to <span className="text-foreground font-medium">freelance project work</span>.
+                Whether you're hiring, need help on a project, or just want to say hi — my inbox is always open.
               </p>
 
               {/* Contact Links */}
