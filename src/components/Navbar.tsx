@@ -60,15 +60,6 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <a
-              href="/Derren_Winata_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity duration-300 opacity-0 animate-fade-in-down"
-              style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}
-            >
-              Resume
-            </a>
             <button
               type="button"
               aria-label="Toggle theme"
@@ -114,14 +105,6 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <a
-                href="/Derren_Winata_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-center font-medium"
-              >
-                Resume
-              </a>
               <button
                 type="button"
                 aria-label="Toggle theme"

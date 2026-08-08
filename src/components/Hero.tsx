@@ -170,15 +170,6 @@ const Hero = () => {
                 >
                   View Case Studies
                 </a>
-                <a
-                  href="/Derren_Winata_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-lg border border-primary text-primary font-medium hover:bg-primary/10 transition-all duration-300 hover-glow"
-                  aria-label="Download resume (PDF)"
-                >
-                  Download Resume
-                </a>
               </div>
 
               {/* Social Links */}

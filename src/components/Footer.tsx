@@ -69,14 +69,6 @@ const Footer = () => {
                 <Mail size={20} />
               </a>
             </div>
-            <a
-              href="/Derren_Winata_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-primary px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 transition-colors"
-            >
-              Download Resume
-            </a>
           </div>
         </div>
 
