@@ -56,7 +56,7 @@ const Contact = () => {
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <div className={`flex items-center gap-4 mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            <span className="font-mono text-primary">05.</span>
+            <span className="font-mono text-primary">06.</span>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">Get In Touch</h2>
             <div className="flex-1 h-px bg-border" />
           </div>
