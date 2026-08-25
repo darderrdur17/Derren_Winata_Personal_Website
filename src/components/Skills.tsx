@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Award } from "lucide-react";
 import { LINKEDIN_URL } from "@/lib/links";
 
 const highlightSkills = [
@@ -12,23 +12,102 @@ const highlightSkills = [
   "PostgreSQL",
   "Supabase",
   "LangGraph",
+  "Anthropic Claude",
+  "Model Context Protocol",
+  "Databricks",
+  "Google Analytics",
   "Tailwind CSS",
-  "Docker",
-  "Pandas",
-  "Quantitative Finance",
   "AI/LLM Applications",
   "Product Strategy",
-  "Marketing Automation",
 ];
 
-const certifications = [
+interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+  expiry?: string;
+  credentialId?: string;
+  skills?: string[];
+}
+
+const certificationGroups: { label: string; items: Certification[] }[] = [
   {
-    icon: "🏅",
-    title: "Accenture Data Analytics and Visualization",
-    detail: "Forage • Dec 2023",
+    label: "AI & LLM",
+    items: [
+      {
+        title: "AI Fundamentals: Language and Vision in AI",
+        issuer: "IBM",
+        date: "Aug 2026",
+        skills: ["Real-world AI Applications", "Natural Language Querying", "Computer Vision"],
+      },
+      {
+        title: "AI Fundamentals: Foundations for Understanding AI",
+        issuer: "IBM",
+        date: "Aug 2026",
+        skills: ["AI Concepts", "Machine Learning Basics", "Responsible AI"],
+      },
+      {
+        title: "Claude with the Anthropic API",
+        issuer: "Anthropic",
+        date: "Aug 2026",
+        skills: ["Anthropic API", "Prompt Engineering", "LLM Integration"],
+      },
+      {
+        title: "Claude with Amazon Bedrock",
+        issuer: "Anthropic",
+        date: "Aug 2026",
+        skills: ["Amazon Bedrock", "Claude", "Cloud AI Deployment"],
+      },
+      {
+        title: "Claude Platform 101",
+        issuer: "Anthropic",
+        date: "Aug 2026",
+        skills: ["Claude Platform", "AI Workflows", "Agent Tools"],
+      },
+      {
+        title: "AI Fluency: Framework & Foundations",
+        issuer: "Anthropic",
+        date: "Aug 2026",
+        skills: ["AI Strategy", "Human-AI Collaboration", "AI Fluency"],
+      },
+      {
+        title: "Introduction to Model Context Protocol",
+        issuer: "Anthropic",
+        date: "Aug 2026",
+        skills: ["MCP", "Tool Integration", "AI Agents"],
+      },
+    ],
   },
   {
-    icon: "🥉",
+    label: "Data & Analytics",
+    items: [
+      {
+        title: "Databricks Fundamentals Accreditation",
+        issuer: "Databricks",
+        date: "Aug 2026",
+        skills: ["Databricks", "Data Engineering", "Lakehouse"],
+      },
+      {
+        title: "Google Analytics Certification",
+        issuer: "Google",
+        date: "Aug 2026",
+        expiry: "Aug 2027",
+        credentialId: "191811640",
+        skills: ["Google Analytics", "Web Analytics", "Conversion Tracking"],
+      },
+      {
+        title: "Data Analytics and Visualization Job Simulation",
+        issuer: "Accenture · Forage",
+        date: "Dec 2023",
+        credentialId: "f7bFQEXKjmHAYeTfw",
+        skills: ["Data Visualization", "Storytelling", "Strategy", "Public Speaking"],
+      },
+    ],
+  },
+];
+
+const awards = [
+  {
     title: "Bronze Award — Mathematical Olympiads",
     detail: "Thailand IMO & GBA Olympiad • 2021–2022",
   },
@@ -81,21 +160,77 @@ const Skills = () => {
             </div>
           </div>
 
-          <div
-            className={`grid sm:grid-cols-2 gap-4 mt-6 ${isVisible ? "animate-fade-in-up delay-300" : "opacity-0"}`}
-          >
-            {certifications.map((cert) => (
-              <div
-                key={cert.title}
-                className="glass-card rounded-xl p-5 hover:border-primary/50 transition-all duration-300 flex items-center gap-4"
-              >
-                <span className="text-2xl">{cert.icon}</span>
-                <div>
-                  <h4 className="text-foreground font-medium text-sm">{cert.title}</h4>
-                  <p className="text-muted-foreground text-xs mt-0.5">{cert.detail}</p>
+          <div className={`mt-10 ${isVisible ? "animate-fade-in-up delay-300" : "opacity-0"}`}>
+            <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+              <Award className="text-primary" size={20} />
+              Licenses & Certifications
+            </h3>
+
+            <div className="space-y-8">
+              {certificationGroups.map((group) => (
+                <div key={group.label}>
+                  <p className="text-xs font-mono uppercase tracking-wider text-primary/80 mb-3">
+                    {group.label}
+                  </p>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {group.items.map((cert) => (
+                      <div
+                        key={cert.title}
+                        className="glass-card rounded-xl p-5 hover:border-primary/50 transition-all duration-300 flex flex-col"
+                      >
+                        <h4 className="text-foreground font-medium text-sm leading-snug">
+                          {cert.title}
+                        </h4>
+                        <p className="text-primary text-xs mt-1.5">{cert.issuer}</p>
+                        <p className="text-muted-foreground text-xs mt-1">
+                          Issued {cert.date}
+                          {cert.expiry ? ` · Expires ${cert.expiry}` : ""}
+                        </p>
+                        {cert.credentialId && (
+                          <p className="text-muted-foreground/70 text-xs mt-0.5 font-mono">
+                            ID: {cert.credentialId}
+                          </p>
+                        )}
+                        {cert.skills && cert.skills.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-border/50">
+                            {cert.skills.map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-2 py-0.5 bg-primary/10 text-primary rounded text-xs font-mono"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {awards.length > 0 && (
+              <div className="mt-8">
+                <p className="text-xs font-mono uppercase tracking-wider text-primary/80 mb-3">
+                  Awards
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {awards.map((award) => (
+                    <div
+                      key={award.title}
+                      className="glass-card rounded-xl p-5 hover:border-primary/50 transition-all duration-300 flex items-center gap-4"
+                    >
+                      <span className="text-2xl">🥉</span>
+                      <div>
+                        <h4 className="text-foreground font-medium text-sm">{award.title}</h4>
+                        <p className="text-muted-foreground text-xs mt-0.5">{award.detail}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            )}
           </div>
 
           <div className={`text-center mt-8 ${isVisible ? "animate-fade-in-up delay-400" : "opacity-0"}`}>
@@ -105,7 +240,7 @@ const Skills = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm"
             >
-              View full skills profile on LinkedIn
+              View all credentials on LinkedIn
               <ArrowUpRight size={14} />
             </a>
           </div>
