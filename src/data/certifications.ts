@@ -99,6 +99,27 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
       },
     ],
   },
+  {
+    label: "Project Management",
+    items: [
+      {
+        title: "Google Project Management Professional Certificate",
+        issuer: "Google · Coursera",
+        date: "Aug 31, 2026",
+        credentialId: "UBNQ12MMPGA0",
+        certificateUrl: "/certificates/google-project-management-coursera.pdf",
+        skills: [
+          "Project Planning",
+          "Scope Management",
+          "Agile Project Management",
+          "Stakeholder Communications",
+          "Team Leadership",
+          "Change Management",
+          "Project Life Cycle",
+        ],
+      },
+    ],
+  },
 ];
 
 export const awards = [
