@@ -52,6 +52,17 @@ const Certifications = () => {
                           ID: {cert.credentialId}
                         </p>
                       )}
+                      {cert.certificateUrl && (
+                        <a
+                          href={cert.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-primary hover:underline text-xs font-mono mt-2"
+                        >
+                          View certificate
+                          <ArrowUpRight size={12} />
+                        </a>
+                      )}
                       {cert.skills && cert.skills.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-border/50">
                           {cert.skills.map((skill) => (

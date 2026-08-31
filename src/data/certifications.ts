@@ -4,6 +4,7 @@ export interface Certification {
   date: string;
   expiry?: string;
   credentialId?: string;
+  certificateUrl?: string;
   skills?: string[];
 }
 
@@ -58,6 +59,23 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
   {
     label: "Data & Analytics",
     items: [
+      {
+        title: "Google Data Analytics Professional Certificate",
+        issuer: "Google · Coursera",
+        date: "Aug 29, 2026",
+        credentialId: "ZLCROBCFKI5Y",
+        certificateUrl: "/certificates/google-data-analytics-coursera.pdf",
+        skills: [
+          "Data Cleaning",
+          "Data Analysis",
+          "Data Visualization",
+          "SQL",
+          "Python",
+          "Tableau",
+          "Spreadsheets",
+          "Data Storytelling",
+        ],
+      },
       {
         title: "Databricks Fundamentals Accreditation",
         issuer: "Databricks",
