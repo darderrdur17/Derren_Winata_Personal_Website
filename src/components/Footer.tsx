@@ -18,7 +18,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Sparkles size={14} className="text-primary" />
-              Available for internships & part-time roles
+              Looking for full-time roles and freelance projects
             </div>
           </div>
 
