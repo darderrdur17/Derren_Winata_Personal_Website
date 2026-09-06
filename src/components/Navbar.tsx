@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/#about" },
+  { name: "Experience", href: "/experience" },
+  { name: "Projects", href: "/projects" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Certifications", href: "/certifications" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
@@ -16,6 +17,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,34 +42,38 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a
-            href="#"
-            className="text-xl font-bold text-gradient animate-fade-in-down"
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            to="/"
+            className="text-xl font-bold text-gradient animate-fade-in-down flex-shrink-0"
           >
             DW
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 link-underline text-sm font-medium opacity-0 animate-fade-in-down"
-                style={{ animationDelay: `${(index + 1) * 100}ms`, animationFillMode: 'forwards' }}
-              >
-                {item.name}
-              </a>
-            ))}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
+            {navItems.map((item, index) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`transition-colors duration-300 link-underline text-sm font-medium opacity-0 animate-fade-in-down ${
+                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={{ animationDelay: `${(index + 1) * 100}ms`, animationFillMode: "forwards" }}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
             <button
               type="button"
               aria-label="Toggle theme"
               title="Toggle theme"
               onClick={() => setTheme(isDark ? "light" : "dark")}
               className="p-2 rounded-full border border-border/60 bg-background/60 text-foreground hover:bg-muted/40 transition-colors duration-300 opacity-0 animate-fade-in-down"
-              style={{ animationDelay: '700ms', animationFillMode: 'forwards' }}
+              style={{ animationDelay: "700ms", animationFillMode: "forwards" }}
             >
               {mounted ? (
                 isDark ? <Sun size={18} /> : <Moon size={18} />
@@ -77,10 +83,9 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-2"
             aria-label="Toggle navigation menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -89,22 +94,21 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50"
+            className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <div className="flex flex-col gap-4 p-6">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-lg"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <button
                 type="button"

@@ -50,8 +50,7 @@ const About = () => {
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                I'm currently looking for <span className="text-primary">full-time opportunities</span>{" "}
-                and am also open to <span className="text-primary">freelance project work</span>.
+                I'm currently <span className="text-primary">available for full time roles and freelance projects</span>.
                 Recently at <span className="text-primary">AI Singapore</span>,{" "}
                 <span className="text-primary">360Cogni</span>, and{" "}
                 <span className="text-primary">NUS</span> — with prior experience at{" "}

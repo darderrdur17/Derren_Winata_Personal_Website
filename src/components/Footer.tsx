@@ -1,10 +1,12 @@
 import { Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { AVAILABILITY_LABEL } from "@/data/site";
 
 const Footer = () => {
   return (
     <footer className="py-12 border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="grid gap-10 md:grid-cols-[1.2fr,1fr,1fr]">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid gap-10 md:grid-cols-[1.2fr,1fr,1fr] min-w-0">
           <div className="space-y-4">
             <div>
               <p className="text-lg font-semibold text-foreground">Derren Winata</p>
@@ -16,27 +18,30 @@ const Footer = () => {
               <MapPin size={14} className="text-primary" />
               Singapore
             </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Sparkles size={14} className="text-primary" />
-              Looking for full-time roles and freelance projects
+            <div className="flex items-start gap-2 text-sm text-muted-foreground">
+              <Sparkles size={14} className="text-primary mt-0.5 flex-shrink-0" />
+              <span>{AVAILABILITY_LABEL}</span>
             </div>
           </div>
 
           <div>
             <p className="text-sm font-semibold text-foreground mb-3">Quick Links</p>
             <div className="grid gap-2 text-sm text-muted-foreground">
-              <a href="#about" className="hover:text-primary transition-colors">
+              <Link to="/#about" className="hover:text-primary transition-colors">
                 About
-              </a>
-              <a href="#projects" className="hover:text-primary transition-colors">
-                Projects
-              </a>
-              <a href="#experience" className="hover:text-primary transition-colors">
+              </Link>
+              <Link to="/experience" className="hover:text-primary transition-colors">
                 Experience
-              </a>
-              <a href="#contact" className="hover:text-primary transition-colors">
+              </Link>
+              <Link to="/projects" className="hover:text-primary transition-colors">
+                Projects
+              </Link>
+              <Link to="/certifications" className="hover:text-primary transition-colors">
+                Certifications
+              </Link>
+              <Link to="/contact" className="hover:text-primary transition-colors">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
 

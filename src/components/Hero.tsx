@@ -156,9 +156,8 @@ const Hero = () => {
               {/* Description */}
               <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed opacity-0 animate-fade-in-up delay-300">
                 NUS Data Science & Analytics graduate (Aug 2026), specializing in full-stack
-                development, AI/LLM applications, and product management. Currently looking for{" "}
-                <span className="text-primary">full-time roles</span> and open to{" "}
-                <span className="text-primary">freelance projects</span>.
+                development, AI/LLM applications, and product management. Currently{" "}
+                <span className="text-primary">available for full time roles and freelance projects</span>.
               </p>
 
               {/* CTA Buttons */}

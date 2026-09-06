@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LINKEDIN_URL } from "@/lib/links";
 
 interface FeaturedItem {
@@ -54,12 +55,12 @@ const featuredProjects: FeaturedItem[] = [
 
 const FeaturedProjects = () => {
   return (
-    <section aria-label="Featured projects" className="py-16 relative">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
+    <section aria-label="Featured projects" className="py-12 sm:py-16 relative">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 mb-8">
             <span className="font-mono text-primary">Featured</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
               Featured Experience
             </h2>
             <div className="flex-1 h-px bg-border" />
@@ -126,6 +127,16 @@ const FeaturedProjects = () => {
                 </a>
               );
             })}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              to="/experience"
+              className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm"
+            >
+              View full experience timeline
+              <ArrowUpRight size={14} />
+            </Link>
           </div>
         </div>
       </div>
