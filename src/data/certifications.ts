@@ -120,6 +120,26 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
       },
     ],
   },
+  {
+    label: "Finance",
+    items: [
+      {
+        title: "Bloomberg Market Concepts (BMC)",
+        issuer: "Bloomberg for Education",
+        date: "Sep 4, 2026",
+        credentialId: "ZZ5qT7Sw88B8C5cEaGkry2zR",
+        certificateUrl: "/certificates/bloomberg-market-concepts.pdf",
+        skills: [
+          "Financial Markets",
+          "Fixed Income",
+          "Equities",
+          "Currencies",
+          "Economic Indicators",
+          "Bloomberg Terminal",
+        ],
+      },
+    ],
+  },
 ];
 
 export const awards = [
