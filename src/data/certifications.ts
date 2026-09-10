@@ -68,6 +68,25 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
     label: "Data & Analytics",
     items: [
       {
+        title: "Snowflake Data Engineering Professional Certificate",
+        issuer: "Snowflake · Coursera",
+        date: "Sep 11, 2026",
+        credentialId: "4GUSO181FPT6",
+        certificateUrl: "/certificates/snowflake-data-engineering-coursera.pdf",
+        insight:
+          "Three-course specialization on building modern data pipelines in Snowflake — ingestion, SQL and Python transformations, orchestration, DevOps, and observability.",
+        skills: [
+          "Snowflake",
+          "ETL",
+          "SQL",
+          "Data Warehousing",
+          "Data Pipelines",
+          "Python",
+          "DevOps",
+          "RBAC",
+        ],
+      },
+      {
         title: "Google Data Analytics Professional Certificate",
         issuer: "Google · Coursera",
         date: "Aug 29, 2026",
