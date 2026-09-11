@@ -14,6 +14,25 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
     label: "AI & LLM",
     items: [
       {
+        title: "Snowflake Generative AI Professional Certificate",
+        issuer: "Snowflake · Coursera",
+        date: "Sep 12, 2026",
+        credentialId: "M5ZEUB06DKRU",
+        certificateUrl: "/certificates/snowflake-generative-ai-coursera.pdf",
+        insight:
+          "Four-course specialization on building Gen AI apps and autonomous agents in Snowflake — semantic views, RAG, tool calling, MCP integration, and agent monitoring.",
+        skills: [
+          "Generative AI",
+          "RAG",
+          "AI Agents",
+          "MCP",
+          "Prompt Engineering",
+          "Tool Calling",
+          "Snowflake",
+          "SQL",
+        ],
+      },
+      {
         title: "AI Fundamentals: Language and Vision in AI",
         issuer: "IBM",
         date: "Aug 2026",
@@ -221,11 +240,11 @@ export const categoryHighlights: CategoryHighlight[] = certificationGroups.map((
     label: group.label,
     title:
       group.label === "AI & LLM"
-        ? "IBM & Anthropic AI credentials"
+        ? "IBM, Anthropic & Snowflake AI credentials"
         : featured.title,
     issuer:
       group.label === "AI & LLM"
-        ? "IBM · Anthropic"
+        ? "IBM · Anthropic · Snowflake"
         : featured.issuer,
     date: featured.date,
     extraCount: group.items.length,
