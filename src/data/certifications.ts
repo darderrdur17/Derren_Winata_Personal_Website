@@ -87,6 +87,25 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
         ],
       },
       {
+        title: "ETL and Data Pipelines with Shell, Airflow and Kafka",
+        issuer: "IBM · Coursera",
+        date: "Sep 11, 2026",
+        credentialId: "LBCATH579UE3",
+        certificateUrl: "/certificates/etl-data-pipelines-coursera.pdf",
+        insight:
+          "Covers ETL and ELT workflows, batch vs concurrent execution, and building data pipelines with Bash, Python, Apache Airflow, and Kafka.",
+        skills: [
+          "ETL",
+          "Apache Airflow",
+          "Kafka",
+          "Bash",
+          "Data Pipelines",
+          "Data Integration",
+          "Data Warehousing",
+          "Shell Scripting",
+        ],
+      },
+      {
         title: "Google Data Analytics Professional Certificate",
         issuer: "Google · Coursera",
         date: "Aug 29, 2026",
