@@ -87,6 +87,27 @@ export const certificationGroups: { label: string; items: Certification[] }[] = 
     label: "Data & Analytics",
     items: [
       {
+        title: "IBM Relational Database Administrator with GenAI Professional Certificate",
+        issuer: "IBM · Coursera",
+        date: "Sep 14, 2026",
+        credentialId: "IGHUSCNY8XUT",
+        certificateUrl: "/certificates/ibm-rdb-admin-genai-coursera.pdf",
+        insight:
+          "Eleven-course specialization covering RDBMS administration, SQL, Python data engineering, ETL pipelines, data warehousing, and applying GenAI to database workflows.",
+        skills: [
+          "SQL",
+          "PostgreSQL",
+          "MySQL",
+          "Database Administration",
+          "Database Design",
+          "ETL",
+          "Python",
+          "Generative AI",
+          "Apache Airflow",
+          "Data Warehousing",
+        ],
+      },
+      {
         title: "Snowflake Data Engineering Professional Certificate",
         issuer: "Snowflake · Coursera",
         date: "Sep 11, 2026",
