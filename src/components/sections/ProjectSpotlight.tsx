@@ -72,7 +72,7 @@ export function ProjectSpotlight({
             alt={imageAlt ?? ""}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            className="h-full w-full object-cover brightness-75 contrast-50 saturate-50 transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5">
@@ -82,7 +82,7 @@ export function ProjectSpotlight({
           </div>
         )}
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-background/70 via-background/10 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/80 via-background/55 to-background/85"
           aria-hidden="true"
         />
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">

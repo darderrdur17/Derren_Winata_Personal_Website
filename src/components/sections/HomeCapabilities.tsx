@@ -118,7 +118,7 @@ export function HomeCapabilities() {
     >
       <Container>
         <SectionHeader
-          eyebrow="06"
+          eyebrow="06 · Capabilities"
           title="What I can run end-to-end."
           lede="Clustered by capability rather than by list. Each group draws on real project work — see the projects section for evidence."
         />

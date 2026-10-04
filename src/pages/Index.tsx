@@ -12,18 +12,17 @@ import { useDocumentMeta } from "@/lib/hooks/useDocumentMeta";
 import { routeMeta } from "@/lib/site";
 
 /**
- * Homepage narrative — nine sections in deliberate order.
+ * Homepage narrative — a hero, then eight numbered sections in deliberate
+ * order. The hero (01 in the narrative) is unnumbered in the UI; the numbered
+ * eyebrows run 01 → 08 across the sections below it.
  *
- * Sections 01–08 follow brief §10 verbatim. Section 04 (Recommendations) is
- * inserted as supplementary attributable evidence between Work and Experience.
- * Atlas owns the call to deviate from the strict 8-section brief here.
- *
- *   01 Introduction (Hero)
- *   02 Proof
- *   03 Selected Work
- *   04 Recommendations                  ← inserted; named voices support
+ *   Hero          (Introduction — unnumbered in the UI)
+ *   01 Proof
+ *   02 Selected Work
+ *   03 Recommendations                  ← inserted; named voices support
  *                                              the work directly above
- *   05 Experience
+ *   04 Experience
+ *   05 How I think (SignatureFlow)
  *   06 Capabilities
  *   07 Certifications
  *   08 Contact

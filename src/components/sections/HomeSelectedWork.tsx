@@ -8,7 +8,7 @@ import { projects } from "@/data/projects";
 import { siteConfig } from "@/lib/site";
 
 /**
- * 03 — Selected Work.
+ * 02 — Selected Work.
  *
  * One ProjectSpotlight (the strongest story: 360 Cogni), then a small grid
  * of ProjectCards for the rest. The deep "Problem → Approach → Outcome →

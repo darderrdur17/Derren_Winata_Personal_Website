@@ -17,7 +17,7 @@ export function HomeCertifications() {
     >
       <Container>
         <SectionHeader
-          eyebrow="07"
+          eyebrow="07 · Certifications"
           title="Continuous, deliberate learning."
           lede="17 credentials across AI/LLM, Data & Analytics, Project Management, and Finance — all earned in the past 18 months."
         />

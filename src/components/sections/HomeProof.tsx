@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ProofBand } from "@/components/sections/Stat";
 
 /**
- * 02 — Proof. A horizontal 4-up band of evidence numbers, each grounded in
+ * 01 — Proof. A horizontal 4-up band of evidence numbers, each grounded in
  * real portfolio data (not aspirational marketing).
  *
  * Stats are static (no count-up) so they're meaningful as a scannable row.
@@ -19,7 +19,7 @@ export function HomeProof() {
     >
       <Container>
         <SectionHeader
-          eyebrow="01"
+          eyebrow="01 · Proof"
           title="Proof, not pitches."
           lede="Every number below is grounded in real work from the past two years — internships, research, and shipped products."
         />

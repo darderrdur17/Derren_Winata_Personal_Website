@@ -52,8 +52,8 @@ export function ProjectCard({
         className
       )}
     >
-      {imageSrc && (
-        <div className="relative h-36 overflow-hidden bg-muted/40">
+      <div className="relative h-36 overflow-hidden bg-muted/40">
+        {imageSrc ? (
           <img
             src={imageSrc}
             alt={imageAlt ?? ""}
@@ -61,14 +61,29 @@ export function ProjectCard({
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-background/15 to-transparent" />
-          {metric && (
-            <span className="absolute bottom-3 left-4 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground/90">
-              {metric}
+        ) : (
+          <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5">
+            <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-primary/80">
+              {category}
             </span>
-          )}
-        </div>
-      )}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.05]"
+              aria-hidden="true"
+              style={{
+                backgroundImage:
+                  "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)",
+                backgroundSize: "14px 14px",
+              }}
+            />
+          </div>
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-background/15 to-transparent" />
+        {metric && (
+          <span className="absolute bottom-3 left-4 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground/90">
+            {metric}
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-3">

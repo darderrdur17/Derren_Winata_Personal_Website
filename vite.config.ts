@@ -101,6 +101,7 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
           }
 
           const supabase = createClient(supabaseUrl, secretKey);
+          const { name, email, subject, message } = validation.value;
           const { error } = await supabase.from("contact_messages").insert({
             name: String(name).trim(),
             email: String(email).trim(),

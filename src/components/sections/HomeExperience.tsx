@@ -22,7 +22,7 @@ export function HomeExperience() {
     >
       <Container>
         <SectionHeader
-          eyebrow="04"
+          eyebrow="04 · Experience"
           title="Experience across the pipeline."
           lede="The three roles most representative of the work — analytics, product, and full-stack delivery. Full timeline on /experience."
         />
