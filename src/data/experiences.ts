@@ -24,13 +24,14 @@ export const experiences: ExperienceItem[] = [
     endDate: "2026-07",
     location: "Singapore",
     type: "Part-time",
-    summary: "Shipped AI for Good website, NSWS automation platform, and ASEAN Youth Challenge judging portal.",
+    summary:
+      "Shipped AI for Good website, NSWS automation platform, and ASEAN (Southeast Asia) Youth Challenge judging portal.",
     highlight: "3 platforms delivered",
     tags: ["Next.js", "FastAPI", "LangGraph"],
     featured: true,
     details: [
       "Built and deployed the AI for Good website (Next.js, TypeScript, Tailwind CSS) covering impact stats, SDG alignment, and ASEAN partnership footprint.",
-      "Developed the NSWS Automation Platform (FastAPI, PostgreSQL, Celery, ChromaDB, LangGraph) for AI-assisted operations, briefs, compliance reminders, and reporting agents.",
+      "Developed the NSWS automation platform (an internal operations tool) using FastAPI, PostgreSQL, Celery, ChromaDB, and LangGraph for AI-assisted operations, briefs, compliance reminders, and reporting agents.",
       "Built the AI Ready ASEAN Youth Challenge 2026 Judging Portal (Next.js, Supabase) with judge assignments, weighted scoring, dashboards, CSV export, and audit logs.",
     ],
   },
@@ -121,7 +122,7 @@ export const experiences: ExperienceItem[] = [
     highlight: "Dual-platform DSFP app",
     tags: ["React 19", "React Native", "Expo"],
     details: [
-      "Developed a full-stack web and mobile app for cognitive health screening in the DSFP programme.",
+      "Developed a full-stack web and mobile app for cognitive health screening in DSFP, a national cognitive-health screening programme.",
       "Designed multi-domain assessments, brain training games, and progress analytics with automated scoring.",
       "Added accessibility, English/Chinese/Malay support, and a caregiver management view with analytics.",
     ],
@@ -135,11 +136,12 @@ export const experiences: ExperienceItem[] = [
     endDate: "2025-10",
     location: "Singapore",
     type: "Part-time",
-    summary: "MUIS data pipeline validating 2,695+ establishments with 99.72% address coverage.",
+    summary:
+      "Singapore halal registry (MUIS) data pipeline validating 2,695+ establishments with 99.72% address coverage.",
     highlight: "99.72% address coverage",
     tags: ["Python", "Pandas", "Data Pipelines"],
     details: [
-      "Built an end-to-end pipeline scraping, cleaning, and validating 2,695+ MUIS halal-certified establishments.",
+      "Built an end-to-end pipeline scraping, cleaning, and validating 2,695+ halal-certified establishments from MUIS, Singapore's Islamic religious authority.",
       "Reached 99.72% address coverage and 100% postal code coverage across 28 postal districts.",
       "Shipped 30+ Python scripts, quality reports, and reproducible Makefile workflows.",
     ],
@@ -153,7 +155,8 @@ export const experiences: ExperienceItem[] = [
     endDate: "2025-07",
     location: "Singapore · Hybrid",
     type: "Internship",
-    summary: "Automated LinkedIn lead generation and mapped 300+ APAC companies against ICP criteria.",
+    summary:
+      "Automated LinkedIn lead generation and mapped 300+ APAC (Asia-Pacific) companies against ICP criteria.",
     highlight: "300+ APAC companies",
     tags: ["Lead Generation", "Market Analysis", "SDR"],
     details: [
@@ -189,7 +192,8 @@ export const experiences: ExperienceItem[] = [
     endDate: "2024-12",
     location: "Singapore · Hybrid",
     type: "Internship",
-    summary: "Automated reporting (83% faster), led Data Layer rollout to 98% accuracy, and optimized Tealium IQ tracking.",
+    summary:
+      "Automated reporting (83% faster), led Data Layer rollout to 98% accuracy, and optimized Tealium IQ (tag management) tracking.",
     highlight: "83% faster reporting",
     tags: ["Python", "Tealium IQ", "Power Automate"],
     featured: true,

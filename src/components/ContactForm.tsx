@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { siteConfig } from "@/lib/site";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -22,6 +23,9 @@ const ContactForm = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  // Honeypot — hidden, off-screen, and skipped by real users. Bots that fill
+  // it trigger a silent server-side rejection (see contactValidation.ts).
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -56,7 +60,7 @@ const ContactForm = () => {
       const response = await fetch("/api/submit-contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
+        body: JSON.stringify({ ...result.data, company: honeypot }),
       });
 
       const payload = await response.json().catch(() => ({}));
@@ -188,6 +192,21 @@ const ContactForm = () => {
         )}
       </div>
 
+      {/* Honeypot — visually hidden, removed from the tab order. Real users
+          never see this; automated spam fillers usually do. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="company">Company (leave this blank)</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
       {/* Submit Button */}
       <button
         type="submit"
@@ -216,9 +235,31 @@ const ContactForm = () => {
       )}
 
       {submitStatus === "error" && (
-        <div className="flex items-center gap-2 text-destructive p-4 rounded-lg bg-destructive/10 border border-destructive/20">
-          <AlertCircle size={20} />
-          <span>Failed to save your message. Please try again or email me directly.</span>
+        <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive">
+          <div className="flex items-center gap-2">
+            <AlertCircle size={20} />
+            <span className="font-medium">Message not sent.</span>
+          </div>
+          {/* Never dead-end a recruiter: give them a path that always works. */}
+          <p className="mt-2 text-sm">
+            Please email me directly at{" "}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="font-medium underline underline-offset-2 hover:opacity-80"
+            >
+              {siteConfig.email}
+            </a>{" "}
+            — or find me on{" "}
+            <a
+              href={siteConfig.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium underline underline-offset-2 hover:opacity-80"
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
         </div>
       )}
     </form>

@@ -3,6 +3,23 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { createClient } from "@supabase/supabase-js";
+import {
+  validateContact,
+  isHoneypotTripped,
+  checkRateLimit,
+  resolveCorsOrigin,
+  PRODUCTION_ORIGINS,
+  type ContactPayload,
+} from "./src/lib/contactValidation";
+
+// The dev server is same-origin to itself; allow its own origin plus the prod
+// origins so the CORS logic mirrors production exactly.
+const DEV_ALLOWED_ORIGINS = [
+  "http://localhost:8080",
+  "http://127.0.0.1:8080",
+  "http://localhost:5173",
+  ...PRODUCTION_ORIGINS,
+];
 
 function readBody(req: import("http").IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -20,6 +37,17 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
     name: "contact-api-dev",
     configureServer(server) {
       server.middlewares.use("/api/submit-contact", async (req, res, next) => {
+        const origin = resolveCorsOrigin(
+          req.headers.origin as string | undefined,
+          DEV_ALLOWED_ORIGINS
+        );
+        if (origin) {
+          res.setHeader("Access-Control-Allow-Origin", origin);
+          res.setHeader("Vary", "Origin");
+        }
+        res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
         if (req.method === "OPTIONS") {
           res.statusCode = 204;
           res.end();
@@ -27,7 +55,9 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
         }
 
         if (req.method !== "POST") {
-          next();
+          res.statusCode = 405;
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ error: "Method not allowed" }));
           return;
         }
 
@@ -42,13 +72,31 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
         }
 
         try {
-          const body = JSON.parse(await readBody(req));
-          const { name, email, subject, message } = body;
+          const body = JSON.parse(await readBody(req)) as ContactPayload;
 
-          if (!name?.trim() || !email?.trim() || !subject?.trim() || !message?.trim()) {
+          // Honeypot: fake success, never persist.
+          if (isHoneypotTripped(body)) {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ success: true }));
+            return;
+          }
+
+          // Mirror api/submit-contact.ts exactly via the shared validator.
+          const validation = validateContact(body);
+          if (!validation.ok || !validation.value) {
             res.statusCode = 400;
             res.setHeader("Content-Type", "application/json");
-            res.end(JSON.stringify({ error: "All fields are required" }));
+            res.end(JSON.stringify({ error: validation.error }));
+            return;
+          }
+
+          const rate = checkRateLimit(validation.value.email);
+          if (!rate.ok) {
+            res.statusCode = 429;
+            res.setHeader("Retry-After", String(rate.retryAfter ?? 60));
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ error: "Too many requests, please try again later" }));
             return;
           }
 

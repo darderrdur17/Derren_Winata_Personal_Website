@@ -34,7 +34,7 @@ const Contact = () => {
       icon: <Linkedin size={20} />,
       label: "LinkedIn",
       value: "/in/derren-winata",
-      href: "https://linkedin.com/in/derren-winata",
+      href: "https://www.linkedin.com/in/derren-winata/",
     },
     {
       icon: <Github size={20} />,

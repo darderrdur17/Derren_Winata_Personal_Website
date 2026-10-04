@@ -11,8 +11,9 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "360 COGNI",
-    summary: "Dementia & cognitive health platform with screening, brain training, and caregiver tools.",
+    title: "360 Cogni",
+    summary:
+      "Dementia & cognitive health platform with screening, brain training, and caregiver tools.",
     insight:
       "I helped shape the product from problem to MVP: who the platform serves, which workflows matter first, and how screening, training, and caregiver support fit together in one experience.",
     outcomes: [
@@ -77,9 +78,10 @@ export const projects: Project[] = [
   },
   {
     title: "Halal Food Landscape",
-    summary: "MUIS data pipeline validating 2,695+ establishments with 99.72% address coverage.",
+    summary:
+      "Singapore halal registry (MUIS) data pipeline validating 2,695+ establishments with 99.72% address coverage.",
     insight:
-      "I focused on coverage and trust: ingest MUIS listings, validate addresses, and produce a landscape dataset that is actually usable for analysis rather than a raw scrape.",
+      "I focused on coverage and trust: ingest MUIS (Singapore's halal registry) listings, validate addresses, and produce a landscape dataset that is actually usable for analysis rather than a raw scrape.",
     outcomes: [
       "Processed 2,695+ establishments from MUIS source data",
       "Reached 99.72% address coverage through validation",

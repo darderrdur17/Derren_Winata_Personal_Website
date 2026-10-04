@@ -27,3 +27,9 @@ supabase/.temp
 *.njsproj
 *.sln
 *.sw?
+
+# WorkBuddy project memory (local only, not part of the repo)
+.workbuddy-ai/
+
+# Vite/ Vitest config-load temp artifacts
+*.timestamp-*.mjs
