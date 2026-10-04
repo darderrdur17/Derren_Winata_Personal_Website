@@ -33,3 +33,6 @@ supabase/.temp
 
 # Vite/ Vitest config-load temp artifacts
 *.timestamp-*.mjs
+
+# TypeScript incremental build info
+*.tsbuildinfo
