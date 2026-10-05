@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { ProjectSpotlight } from "@/components/sections/ProjectSpotlight";
 import { projects } from "@/data/projects";
+import { categoryFromTech } from "@/lib/projectMeta";
 import { siteConfig } from "@/lib/site";
 
 /**
@@ -15,20 +16,17 @@ import { siteConfig } from "@/lib/site";
  * Insight" storytelling lives on /projects so the homepage rhythm stays
  * scannable.
  *
- * Atlas-curated ranking (by impact + storytelling value):
- *   1. 360 Cogni            (spotlight — product + research + UX)
- *   2. EQ-5D-5L TTO          (multi-lingual research tool)
- *   3. Pulse                 (high-throughput Go + Kafka)
- *   4. Bayesian Pair Trading (quant research rigour)
- *   5. Halal Food Landscape  (data engineering at 99.72% coverage)
+ * The grid leads with the most recent builds (2026) so the homepage reflects
+ * current work; the full curated set — including the earlier research and
+ * engineering projects — lives on /projects.
  */
 export function HomeSelectedWork() {
   const spotlight = projects.find((p) => p.title === "360 Cogni")!;
   const rest = [
-    projects.find((p) => p.title === "EQ-5D-5L TTO Research Tool")!,
-    projects.find((p) => p.title === "Pulse — Social Intelligence")!,
-    projects.find((p) => p.title === "Bayesian Pair Trading")!,
-    projects.find((p) => p.title === "Halal Food Landscape")!,
+    projects.find((p) => p.title === "CommodityPlay.")!,
+    projects.find((p) => p.title === "Trichella")!,
+    projects.find((p) => p.title === "DDOG Earnings Tracker")!,
+    projects.find((p) => p.title === "StyleSense AI")!,
   ];
 
   return (
@@ -103,16 +101,4 @@ export function HomeSelectedWork() {
       </Container>
     </section>
   );
-}
-
-function categoryFromTech(tech: string): string {
-  const map: Record<string, string> = {
-    React: "Frontend",
-    "React Native": "Mobile",
-    "Node.js": "Backend",
-    Python: "Data · ML",
-    Go: "Backend",
-    "Next.js": "Full-stack",
-  };
-  return map[tech] ?? "Build";
 }

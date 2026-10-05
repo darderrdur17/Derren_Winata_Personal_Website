@@ -6,6 +6,7 @@ import { ProjectStory } from "@/components/sections/ProjectStory";
 import { useDocumentMeta } from "@/lib/hooks/useDocumentMeta";
 import { routeMeta } from "@/lib/site";
 import { projects } from "@/data/projects";
+import { categoryFromTech } from "@/lib/projectMeta";
 import { projectsItemList } from "@/lib/structuredData";
 
 const ProjectsPage = () => {
@@ -92,6 +93,18 @@ function problemFor(title: string): string {
       "Marketing teams were spending hours a week on briefs and content calendars. The question was whether autonomous agents, scheduled runs, and a small prediction layer could compress that into a daily operating rhythm.",
     "Halal Food Landscape":
       "MUIS publishes data, but address coverage was patchy. The work was ingesting, cleaning, and validating every record so the dataset was actually usable for downstream analytics — not just a raw scrape.",
+    "CommodityPlay.":
+      "Commodity-trading careers are learned on the desk, but the guidance is scattered across PDFs, forums, and word of mouth. The problem was packaging it into a structured product — and gating it behind tiers that actually hold across web and mobile.",
+    Trichella:
+      "Scalp and hair-loss assessment usually means a clinic visit. The question was whether a single uploaded photo, paired with a vision model, could produce a report a user would trust and could hand to a specialist.",
+    "StyleSense AI":
+      "Wardrobe apps ask users to type everything in by hand, then ignore the context that actually decides an outfit — weather, place, and season. The goal was to make that context arrive for free.",
+    "DDOG Earnings Tracker":
+      "Pre-earnings estimates usually rest on paid alternative data. The question was how much signal sits in genuinely public sources — and whether any of it beats simply assuming last quarter repeats.",
+    "S&P 500 Sector Analysis":
+      "Five years of sector performance, six sectors, thirty names — and no clear answer to which sectors deserved capital in 2026. The work was turning raw price history into a defensible allocation view.",
+    "UNR Website Redesign":
+      "A university site has to serve applicants, current students, and staff at once, and unr.ac.id was doing it in one flat, monolingual layer. The prototype had to prove a structure could carry all three.",
   };
   return (
     map[title] ??
@@ -113,23 +126,23 @@ function approachFor(title: string): string {
       "Connected React 18, Supabase, and an automation layer with autonomous agents. Schedulers delivered daily briefs and weekly performance views without manual prep.",
     "Halal Food Landscape":
       "Built an end-to-end Python/Pandas pipeline that scraped, cleaned, and validated 2,695+ establishments — 99.72% address coverage, 100% postal code coverage across 28 districts.",
+    "CommodityPlay.":
+      "Built a Next.js 15 App Router app on Neon Postgres with Prisma, Auth.js v5, and Stripe billing for one-time and subscription tiers. The same API backs an Expo React Native client, so members share one account across web and mobile.",
+    Trichella:
+      "Wired an image-upload flow to a GPT-4o analysis endpoint that returns an overall score, six diagnostic conditions, and six scalp metrics. Findings and recommendations render on screen and export to a formatted PDF via jsPDF.",
+    "StyleSense AI":
+      "Built a Next.js 16 app with per-user wardrobe storage in Postgres, AI garment detection via Gemini (OpenAI fallback), and Open-Meteo for live forecasts and historical weather. EXIF parsing plus reverse geocoding fills place and date on upload.",
+    "DDOG Earnings Tracker":
+      "Assembled 14 quarters of public signals — npm download counts, SEC XBRL company facts, and Wikimedia pageviews — then tested each with a lag-1 ridge model against a persistence baseline on a walk-forward window.",
+    "S&P 500 Sector Analysis":
+      "Pulled five years of prices into SQLite, computed risk-adjusted returns, seasonality, and correlation matrices in pandas and scikit-learn, then published the result as an interactive Tableau dashboard with a 2026 outlook.",
+    "UNR Website Redesign":
+      "Prototyped eight-plus pages in plain HTML/CSS/JS with no build step: bilingual content, a program filter, a testimonial slider, and a mobile drawer — all with scroll reveals that respect prefers-reduced-motion.",
   };
   return (
     map[title] ??
     "The approach is documented in the project repository and in the detail panel above."
   );
-}
-
-function categoryFromTech(tech: string): string {
-  const map: Record<string, string> = {
-    React: "Frontend",
-    "React Native": "Mobile",
-    "Node.js": "Backend",
-    Python: "Data · ML",
-    Go: "Backend",
-    "Next.js": "Full-stack",
-  };
-  return map[tech] ?? "Build";
 }
 
 export default ProjectsPage;

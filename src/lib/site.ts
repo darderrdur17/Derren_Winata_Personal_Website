@@ -78,12 +78,12 @@ export const siteRoutes = [
   {
     path: "/projects",
     label: "Projects",
-    blurb: "Six in-depth case studies",
+    blurb: "Twelve in-depth case studies",
     // 53 chars
     title: "Projects — Full-Stack, AI & Data Work | Derren Winata",
-    // 153 chars
+    // 152 chars
     description:
-      "Six selected projects: dementia-care platform, health-economics research tool, Go/Kafka social pipeline, Bayesian trading research. What I built and why.",
+      "Twelve selected projects — SaaS, AI diagnostics, health-economics research, Go/Kafka pipelines, and quant analysis. Problem, approach, outcome for each.",
   },
   {
     path: "/certifications",
