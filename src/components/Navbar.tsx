@@ -2,15 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Link, useLocation } from "react-router-dom";
-
-const navItems = [
-  { name: "About", href: "/#about" },
-  { name: "Experience", href: "/experience" },
-  { name: "Projects", href: "/projects" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Certifications", href: "/certifications" },
-  { name: "Contact", href: "/contact" },
-];
+import { navItems } from "@/lib/site";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,14 +48,14 @@ const Navbar = () => {
               const isActive = location.pathname === item.href;
               return (
                 <Link
-                  key={item.name}
+                  key={item.label}
                   to={item.href}
                   className={`transition-colors duration-300 link-underline text-sm font-medium opacity-0 animate-fade-in-down ${
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                   style={{ animationDelay: `${(index + 1) * 100}ms`, animationFillMode: "forwards" }}
                 >
-                  {item.name}
+                  {item.label}
                 </Link>
               );
             })}
@@ -102,12 +94,12 @@ const Navbar = () => {
             <div className="flex flex-col gap-4 p-6">
               {navItems.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.label}
                   to={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-lg"
                 >
-                  {item.name}
+                  {item.label}
                 </Link>
               ))}
               <button

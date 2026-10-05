@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
 import ContactForm from "./ContactForm";
+import { siteConfig } from "@/lib/site";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,25 +28,25 @@ const Contact = () => {
     {
       icon: <Mail size={20} />,
       label: "Email",
-      value: "derren.winata@u.nus.edu",
-      href: "mailto:derren.winata@u.nus.edu",
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
     },
     {
       icon: <Linkedin size={20} />,
       label: "LinkedIn",
       value: "/in/derren-winata",
-      href: "https://www.linkedin.com/in/derren-winata/",
+      href: siteConfig.social.linkedin,
     },
     {
       icon: <Github size={20} />,
       label: "GitHub",
       value: "@darderrdur17",
-      href: "https://github.com/darderrdur17",
+      href: siteConfig.social.github,
     },
     {
       icon: <MapPin size={20} />,
       label: "Location",
-      value: "Singapore",
+      value: siteConfig.location,
       href: "#",
     },
   ];

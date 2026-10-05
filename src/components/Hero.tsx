@@ -1,5 +1,6 @@
 import { ArrowDown, Github, Linkedin, ArrowUpRight, Sparkles, FileText } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+import { SiteDirectory } from "@/components/SiteDirectory";
 
 /**
  * Hero — the marquee moment of the homepage.
@@ -149,6 +150,8 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <SiteDirectory className="mt-14 sm:mt-16" />
       </div>
 
       <a

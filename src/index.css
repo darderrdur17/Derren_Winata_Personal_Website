@@ -334,6 +334,31 @@
   .animate-reveal-left  { animation: reveal-in-left 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
   .animate-reveal-right { animation: reveal-in-right 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
   .animate-reveal-down  { animation: reveal-down 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+
+  /* Entrance animations. The navbar and contact header reference these classes
+     but they were never defined — leaving `opacity-0` elements permanently
+     invisible (the top-nav links never appeared). Defined here so they resolve.
+     `forwards` keeps the final opacity:1 even when reduced-motion collapses the
+     duration to ~0ms. */
+  @keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .animate-fade-in-down  { animation: fade-in-down 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+  .animate-fade-in-up    { animation: fade-in-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+  .animate-slide-in-left { animation: slide-in-left 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+
   .animate-float      { animation: float 6s ease-in-out infinite; }
   .animate-pulse-glow { animation: pulse-glow 3.5s ease-in-out infinite; }
   .animate-gradient   {

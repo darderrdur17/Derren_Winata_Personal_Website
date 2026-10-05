@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail, MapPin, Sparkles, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AVAILABILITY_LABEL } from "@/data/site";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, navItems } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -40,31 +40,13 @@ const Footer = () => {
         <div className="flex flex-col gap-6 pt-6 text-sm md:flex-row md:items-center md:justify-between">
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap gap-x-5 gap-y-2 text-muted-foreground">
-              <li>
-                <Link to="/" className="transition-colors hover:text-foreground">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/experience" className="transition-colors hover:text-foreground">
-                  Experience
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="transition-colors hover:text-foreground">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/certifications" className="transition-colors hover:text-foreground">
-                  Certifications
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="transition-colors hover:text-foreground">
-                  Contact
-                </Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link to={item.href} className="transition-colors hover:text-foreground">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
           <ul className="flex items-center gap-4 text-muted-foreground">

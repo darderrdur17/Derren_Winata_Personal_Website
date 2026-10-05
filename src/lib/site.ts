@@ -58,6 +58,7 @@ export const siteRoutes = [
   {
     path: "/",
     label: "Home",
+    blurb: "Overview & how I work",
     // 57 chars
     title: "Derren Winata — Full-Stack Developer & Data Analyst (NUS)",
     // 136 chars
@@ -67,6 +68,7 @@ export const siteRoutes = [
   {
     path: "/experience",
     label: "Experience",
+    blurb: "Roles & career timeline",
     // 58 chars
     title: "Career Timeline — Data, Product & AI Roles | Derren Winata",
     // 147 chars
@@ -76,6 +78,7 @@ export const siteRoutes = [
   {
     path: "/projects",
     label: "Projects",
+    blurb: "Six in-depth case studies",
     // 53 chars
     title: "Projects — Full-Stack, AI & Data Work | Derren Winata",
     // 153 chars
@@ -85,6 +88,7 @@ export const siteRoutes = [
   {
     path: "/certifications",
     label: "Certifications",
+    blurb: "17 credentials, four tracks",
     // 58 chars
     title: "Certifications — AI, Data & PM Credentials | Derren Winata",
     // 152 chars
@@ -94,6 +98,7 @@ export const siteRoutes = [
   {
     path: "/contact",
     label: "Contact",
+    blurb: "Email, LinkedIn, GitHub",
     // 60 chars
     title: "Contact — Derren Winata | Data & AI Engineer in Singapore",
     // 154 chars
@@ -103,6 +108,22 @@ export const siteRoutes = [
 ] as const;
 
 export type SiteRoute = (typeof siteRoutes)[number];
+
+/**
+ * Navigation directory — the canonical list of top-level destinations.
+ *
+ * Derived from `siteRoutes` so the navbar, footer, and hero directory can never
+ * drift apart: adding a page is a single entry in `siteRoutes`, and every
+ * navigation surface (plus the sitemap) updates at once. Order follows
+ * `siteRoutes`.
+ */
+export const navItems = siteRoutes.map(({ path, label, blurb }) => ({
+  href: path,
+  label,
+  blurb,
+}));
+
+export type NavItem = (typeof navItems)[number];
 
 /**
  * Look up a route's metadata by path.
