@@ -39,12 +39,12 @@ export const projects: Project[] = [
   {
     title: "CommodityPlay.",
     summary:
-      "Freelance build for a commodity-trading career playbook — a Next.js 15 web app plus an Expo mobile client.",
+      "Freelance build for a commodity-trading career and sales playbook — a Next.js 15 web app plus an Expo mobile client.",
     insight:
       "I joined as the freelance developer on the technical team, so the interesting problem was the gating: a free glossary, a Pro playbook, and Elite mentor access had to be enforced consistently across web and mobile, from one identity and one billing system.",
     outcomes: [
       "Develop the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5",
-      "Modelled Starter / Pro / Elite tiers with Stripe one-time and subscription billing",
+      "Built the Stripe billing layer across four monthly plans on a Career and a Sales track, with webhooks and a customer portal",
       "Extended the same API to an Expo React Native client with shared auth",
     ],
     tech: ["Next.js 15", "Prisma", "Stripe", "Expo"],

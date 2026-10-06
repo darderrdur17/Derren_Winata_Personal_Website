@@ -25,13 +25,15 @@ export const experiences: ExperienceItem[] = [
     location: "Singapore · Remote",
     type: "Freelance",
     summary:
-      "Freelance full-stack build for a commodity-trading career playbook — Next.js 15 web app plus an Expo mobile client.",
-    highlight: "Web + mobile on one API",
-    tags: ["Next.js 15", "Prisma", "Stripe"],
+      "Freelance full-stack build for a commodity-trading career and sales playbook — Next.js 15 web app plus an Expo mobile client, with Stripe-billed membership tiers.",
+    highlight: "Web + mobile, 4 paid tiers",
+    tags: ["Next.js 15", "Prisma", "Stripe", "Expo"],
     details: [
-      "Develop the Next.js 15 App Router web app on Neon Postgres with Prisma and Auth.js v5.",
-      "Model Starter / Pro / Elite membership tiers with Stripe one-time and subscription billing.",
-      "Extend the same API to an Expo React Native client so members share one account across web and mobile.",
+      "Build the Next.js 15 App Router web app on Neon Postgres with Prisma, using Auth.js v5 for email/password and Google OAuth sign-in.",
+      "Implement the tiered membership model in Stripe — Career and Sales tracks across four monthly plans, subscription webhooks, and the customer billing portal.",
+      "Wire the access gates that make the tiers real: free Desk Glossary and Weekly Digest, Pro playbook chapters, resume templates and interview questions, up to Elite mentor connect and job openings.",
+      "Extend the same API to an Expo React Native client (Expo Router tabs for dashboard, playbook, glossary, and profile) so members share one account across web and mobile.",
+      "Ship the supporting surface: Resend transactional email, an admin panel for managing users and mentor questions, and seeded demo accounts with one-click sign-in.",
     ],
   },
   {

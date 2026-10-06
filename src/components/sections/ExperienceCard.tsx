@@ -19,7 +19,8 @@ export function ExperienceCard({
   variant = "compact",
   className,
 }: ExperienceCardProps) {
-  const bullets = variant === "compact" ? item.details.slice(0, 2) : item.details;
+  // Matches the docstring: the three most important bullets on a compact card.
+  const bullets = variant === "compact" ? item.details.slice(0, 3) : item.details;
   return (
     <article
       className={cn(

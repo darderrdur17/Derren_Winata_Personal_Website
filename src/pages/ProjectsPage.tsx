@@ -127,7 +127,7 @@ function approachFor(title: string): string {
     "Halal Food Landscape":
       "Built an end-to-end Python/Pandas pipeline that scraped, cleaned, and validated 2,695+ establishments — 99.72% address coverage, 100% postal code coverage across 28 districts.",
     "CommodityPlay.":
-      "I develop the Next.js 15 App Router app on Neon Postgres with Prisma, Auth.js v5, and Stripe billing for one-time and subscription tiers. The same API backs an Expo React Native client, so members share one account across web and mobile.",
+      "I develop the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5, and the Stripe layer behind four monthly plans split across a Career and a Sales track. The same API backs an Expo React Native client, so members share one account across web and mobile.",
     Trichella:
       "Wired an image-upload flow to a GPT-4o analysis endpoint that returns an overall score, six diagnostic conditions, and six scalp metrics. Findings and recommendations render on screen and export to a formatted PDF via jsPDF.",
     "StyleSense AI":
