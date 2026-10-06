@@ -10,10 +10,11 @@ export interface ExperienceItem {
   summary: string;
   highlight: string;
   /**
-   * Optional reflective takeaway, rendered as a highlighted callout on the
-   * card. Only populate this when there is something genuinely worth saying —
-   * a role without one simply renders without the callout rather than carrying
-   * filler.
+   * Reflective takeaway, rendered as a highlighted callout on the card.
+   *
+   * Every role carries one. Write it from the work already documented in
+   * `summary` / `details` — a genuine "what was the interesting problem here"
+   * line, never an invented achievement or a padded restatement.
    */
   insight?: string;
   tags: string[];
@@ -78,6 +79,8 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Shipped AI for Good website, NSWS automation platform, and ASEAN (Southeast Asia) Youth Challenge judging portal.",
     highlight: "3 platforms delivered",
+    insight:
+      "Three products, three audiences — a public impact site, an internal ops tool, and a competition judging portal. The surprise was how much of the plumbing was the same problem in different clothes: auth, data modelling, and deployment carried across all three.",
     tags: ["Next.js", "FastAPI", "LangGraph"],
     featured: true,
     details: [
@@ -97,6 +100,8 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
     summary: "Defined MVP roadmap, UX flows, and integrations for a cognitive health platform at 360cogni.com.",
     highlight: "1,000+ target users",
+    insight:
+      "The most valuable thing I did was subtract scope, not add it. Deciding what the MVP would not do is what let five core flows ship — and the 20+ fixes that came out of user testing were worth more than any feature I could have squeezed in.",
     tags: ["Product Strategy", "Supabase", "Vercel"],
     featured: true,
     details: [
@@ -117,6 +122,8 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
     summary: "Built Node.js marketing intelligence pipeline with Claude, automating briefs and content calendars.",
     highlight: "Daily AI briefs",
+    insight:
+      "An AI pipeline is only worth building if it runs without you. Getting Claude to draft a brief was the easy half; the real work was making the schedule, the inputs, and the format reliable enough that nobody had to double-check the output.",
     tags: ["Node.js", "Claude", "Automation"],
     details: [
       "Built a Node.js marketing intelligence pipeline with Anthropic Claude for daily briefs, monthly calendars, and weekly performance views.",
@@ -135,6 +142,8 @@ export const experiences: ExperienceItem[] = [
     type: "Part-time",
     summary: "Real-time educational jigsaw game with Game Master controls, scoring, and mobile-first play.",
     highlight: "Live multiplayer sessions",
+    insight:
+      "A real-time game lives or dies on the lobby. Most of the engineering went into the parts players never praise — session state, who's connected, and what happens when someone drops mid-round — because that is exactly what they notice when it breaks.",
     tags: ["React", "TypeScript", "Supabase"],
     details: [
       "Built lobby, shareable sessions, Game Master controls, two-phase puzzles, timers, points, and post-round results.",
@@ -153,6 +162,8 @@ export const experiences: ExperienceItem[] = [
     type: "Part-time",
     summary: "Full-stack EQ-5D-5L TTO research platform with GDPR compliance and WCAG 2.1 AA accessibility.",
     highlight: "4 languages supported",
+    insight:
+      "Research tools fail on trust, not features. Live utility calculations were the straightforward part; GDPR-aligned auth and encryption, plus WCAG 2.1 AA across four languages, were what made it something a study could actually run on.",
     tags: ["React", "Node.js", "PostgreSQL"],
     details: [
       "Architected a React/TypeScript and Node.js/Express app for EQ-5D-5L Classic TTO health economics research.",
@@ -171,6 +182,8 @@ export const experiences: ExperienceItem[] = [
     type: "Part-time",
     summary: "Cognitive health screening app for seniors and caregivers with web and React Native clients.",
     highlight: "Dual-platform DSFP app",
+    insight:
+      "Screening seniors and reporting to their caregivers is two products on one dataset — the person assessed needs simplicity, the person reading the results needs depth. Accessibility and trilingual support were not polish bolted on at the end; they were the product.",
     tags: ["React 19", "React Native", "Expo"],
     details: [
       "Developed a full-stack web and mobile app for cognitive health screening in DSFP, a national cognitive-health screening programme.",
@@ -190,6 +203,8 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Singapore halal registry (MUIS) data pipeline validating 2,695+ establishments with 99.72% address coverage.",
     highlight: "99.72% address coverage",
+    insight:
+      "Anyone can scrape a registry; the value was in the validation. Pushing address coverage to 99.72% across 28 districts, with quality reports and a reproducible Makefile, is what turned a scrape into a dataset someone else could rely on.",
     tags: ["Python", "Pandas", "Data Pipelines"],
     details: [
       "Built an end-to-end pipeline scraping, cleaning, and validating 2,695+ halal-certified establishments from MUIS, Singapore's Islamic religious authority.",
@@ -209,6 +224,8 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Automated LinkedIn lead generation and mapped 300+ APAC (Asia-Pacific) companies against ICP criteria.",
     highlight: "300+ APAC companies",
+    insight:
+      "Outbound is a data problem before it is a sales one. Filtering 300+ APAC companies against ICP criteria first is what made the outreach volume count — the targeting did more work than the sending.",
     tags: ["Lead Generation", "Market Analysis", "SDR"],
     details: [
       "Designed and automated a LinkedIn outreach workflow for prospect filtering and message sequencing.",
@@ -227,6 +244,8 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
     summary: "Shipped Python scrapers for 50k+ records and Django APIs for secure health data access.",
     highlight: "70% less manual collection",
+    insight:
+      "Health data raises the bar on everything downstream. The scrapers were mechanical; the careful part was the Django APIs, because privacy-first handling of medical data is a constraint you design around from the start, not a feature you add later.",
     tags: ["Python", "Django", "APIs"],
     details: [
       "Developed Python scrapers that extracted 50k+ records and cut manual collection time by 70%.",
@@ -246,6 +265,8 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Automated reporting (83% faster), led Data Layer rollout to 98% accuracy, and optimized Tealium IQ (tag management) tracking.",
     highlight: "83% faster reporting",
+    insight:
+      "Every number downstream depends on the data layer being right. Getting tracking accuracy to 98% had to come before the conversion and ROI wins — analysis on unreliable data is just confident guessing.",
     tags: ["Python", "Tealium IQ", "Power Automate"],
     featured: true,
     details: [
@@ -267,6 +288,8 @@ export const experiences: ExperienceItem[] = [
     type: "Part-time",
     summary: "Validated 1,000+ data files against official sources, cutting post-launch errors by 30%.",
     highlight: "30% fewer errors",
+    insight:
+      "QA is invisible when it works, which is the point. Cross-referencing 1,000+ files against official sources taught me that the cheapest bug to fix is the one that never ships.",
     tags: ["Data Validation", "QA", "Analytics"],
     details: [
       "Validated datasets used in product launches, reducing post-launch errors by 30%.",
