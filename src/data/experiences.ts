@@ -16,6 +16,25 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
+    id: "unr",
+    company: "Universitas Ngurah Rai (UNR)",
+    role: "Freelance Developer & Research Collaborator",
+    period: "Apr 2026 – Present",
+    startDate: "2026-04",
+    endDate: "2026-10",
+    location: "Bali, Indonesia",
+    type: "Freelance",
+    summary:
+      "Bilingual campus-site redesign plus co-authored research on Bali's foreign tourist levy and AI governance.",
+    highlight: "Bilingual EN/ID delivery",
+    tags: ["Next.js", "Localisation", "Research"],
+    details: [
+      "Redesigned unr.ac.id as a bilingual Indonesian/English prototype — homepage, faculties, news, admissions, portal, and contact — with program filters, a testimonial slider, and an accessible mobile drawer.",
+      "Produced the positioning and AI-perception audit and the technical specification the prototype was built from.",
+      "Co-authoring a paper on Bali's foreign tourist levy (progressive web app) and AI governance for Smart Digital Conference 2026, working with UNR faculty and programme staff.",
+    ],
+  },
+  {
     id: "aisg-programme",
     company: "AI Singapore",
     role: "Programme & Partnerships Assistant",

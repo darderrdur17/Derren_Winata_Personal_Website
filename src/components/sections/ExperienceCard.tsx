@@ -23,7 +23,11 @@ export function ExperienceCard({
   return (
     <article
       className={cn(
-        "flex h-full flex-col gap-4 rounded-xl border border-border/60 bg-card/40 p-5 transition-all duration-300 hover-glow",
+        // No `h-full` here: on the homepage the card IS the grid item and
+        // stretches via `align-items: stretch`. On /experience the card is a
+        // flex child that grows (`flex-1`) so the caption below it stays inside
+        // the <li> instead of overflowing into the next grid row.
+        "flex flex-col gap-4 rounded-xl border border-border/60 bg-card/40 p-5 transition-all duration-300 hover-glow",
         variant === "rich" && "p-6",
         className
       )}

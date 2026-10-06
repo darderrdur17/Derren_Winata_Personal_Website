@@ -94,7 +94,7 @@ function problemFor(title: string): string {
     "Halal Food Landscape":
       "MUIS publishes data, but address coverage was patchy. The work was ingesting, cleaning, and validating every record so the dataset was actually usable for downstream analytics — not just a raw scrape.",
     "CommodityPlay.":
-      "Commodity-trading careers are learned on the desk, but the guidance is scattered across PDFs, forums, and word of mouth. The problem was packaging it into a structured product — and gating it behind tiers that actually hold across web and mobile.",
+      "Commodity-trading careers are learned on the desk, but the guidance is scattered across PDFs, forums, and word of mouth. As the freelance developer on the technical team, my part was packaging it into a structured product — and gating it behind tiers that actually hold across web and mobile.",
     Trichella:
       "Scalp and hair-loss assessment usually means a clinic visit. The question was whether a single uploaded photo, paired with a vision model, could produce a report a user would trust and could hand to a specialist.",
     "StyleSense AI":
@@ -127,7 +127,7 @@ function approachFor(title: string): string {
     "Halal Food Landscape":
       "Built an end-to-end Python/Pandas pipeline that scraped, cleaned, and validated 2,695+ establishments — 99.72% address coverage, 100% postal code coverage across 28 districts.",
     "CommodityPlay.":
-      "Built a Next.js 15 App Router app on Neon Postgres with Prisma, Auth.js v5, and Stripe billing for one-time and subscription tiers. The same API backs an Expo React Native client, so members share one account across web and mobile.",
+      "I develop the Next.js 15 App Router app on Neon Postgres with Prisma, Auth.js v5, and Stripe billing for one-time and subscription tiers. The same API backs an Expo React Native client, so members share one account across web and mobile.",
     Trichella:
       "Wired an image-upload flow to a GPT-4o analysis endpoint that returns an overall score, six diagnostic conditions, and six scalp metrics. Findings and recommendations render on screen and export to a formatted PDF via jsPDF.",
     "StyleSense AI":

@@ -68,12 +68,12 @@ export const siteRoutes = [
   {
     path: "/experience",
     label: "Experience",
-    blurb: "Roles & career timeline",
+    blurb: "12 roles, timeline & research",
     // 58 chars
     title: "Career Timeline — Data, Product & AI Roles | Derren Winata",
-    // 147 chars
+    // 154 chars
     description:
-      "11 roles across AI Singapore, 360 Cogni, Marina Bay Sands, and NUS — analytics, product, research, and full-stack delivery. Timeline, newest first.",
+      "12 roles across AI Singapore, 360 Cogni, UNR, Marina Bay Sands, and NUS — analytics, product, research, and full-stack delivery. Timeline, newest first.",
   },
   {
     path: "/projects",
