@@ -48,7 +48,7 @@ export const projects: Project[] = [
       "Extended the same API to an Expo React Native client with shared auth",
     ],
     tech: ["Next.js 15", "Prisma", "Stripe", "Expo"],
-    href: "https://github.com/darderrdur17/commodityplay",
+    href: "https://www.commodityplay.ai",
   },
   {
     title: "Trichella",
