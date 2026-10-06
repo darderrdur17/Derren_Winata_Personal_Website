@@ -9,6 +9,13 @@ export interface ExperienceItem {
   type: string;
   summary: string;
   highlight: string;
+  /**
+   * Optional reflective takeaway, rendered as a highlighted callout on the
+   * card. Only populate this when there is something genuinely worth saying —
+   * a role without one simply renders without the callout rather than carrying
+   * filler.
+   */
+  insight?: string;
   tags: string[];
   details: string[];
   featured?: boolean;
@@ -27,6 +34,8 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Freelance full-stack build for a commodity-trading career and sales playbook — Next.js 15 web app plus an Expo mobile client, with Stripe-billed membership tiers.",
     highlight: "Web + mobile, 4 paid tiers",
+    insight:
+      "The interesting problem wasn't the pages — it was making the paid tiers mean something. One account had to unlock the right content on web and mobile, with Stripe as the single source of truth for who gets what.",
     tags: ["Next.js 15", "Prisma", "Stripe", "Expo"],
     details: [
       "Build the Next.js 15 App Router web app on Neon Postgres with Prisma, using Auth.js v5 for email/password and Google OAuth sign-in.",
@@ -43,11 +52,13 @@ export const experiences: ExperienceItem[] = [
     period: "Apr 2026 – Present",
     startDate: "2026-04",
     endDate: "2026-10",
-    location: "Bali, Indonesia",
+    location: "Bali, Indonesia · Remote",
     type: "Freelance",
     summary:
       "Bilingual campus-site redesign plus co-authored research on Bali's foreign tourist levy and AI governance.",
     highlight: "Bilingual EN/ID delivery",
+    insight:
+      "Two audiences pull a university site in opposite directions: prospective students need a clear path in, while staff need the institutional detail. The prototype had to hold both in one navigation, in two languages, without either side feeling bolted on.",
     tags: ["Next.js", "Localisation", "Research"],
     details: [
       "Redesigned unr.ac.id as a bilingual Indonesian/English prototype — homepage, faculties, news, admissions, portal, and contact — with program filters, a testimonial slider, and an accessible mobile drawer.",

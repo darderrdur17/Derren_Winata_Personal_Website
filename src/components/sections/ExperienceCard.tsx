@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
  * dedicated /experience timeline.
  *
  * The card surfaces company, role, period, the highlighted metric, and the
- * three most important detail bullets. Deeper detail lives on /experience.
+ * three most important detail bullets, plus an optional "Insight" callout for
+ * roles that have a takeaway worth stating. Deeper detail lives on /experience.
  */
 export interface ExperienceCardProps {
   item: ExperienceItem;
@@ -58,6 +59,17 @@ export function ExperienceCard({
           </li>
         ))}
       </ul>
+
+      {item.insight && (
+        <div className="rounded-lg border border-primary/25 bg-primary/[0.06] p-3">
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-primary">
+            Insight
+          </p>
+          <p className="mt-1.5 text-pretty text-sm leading-relaxed text-foreground/90">
+            {item.insight}
+          </p>
+        </div>
+      )}
 
       <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border/50 pt-3">
         {item.tags.map((tag) => (
