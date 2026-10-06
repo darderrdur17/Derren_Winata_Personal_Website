@@ -29,7 +29,7 @@ export function ExperienceCard({
         // stretches via `align-items: stretch`. On /experience the card is a
         // flex child that grows (`flex-1`) so the caption below it stays inside
         // the <li> instead of overflowing into the next grid row.
-        "flex flex-col gap-4 rounded-xl border border-border/60 bg-card/40 p-5 transition-all duration-300 hover-glow",
+        "flex flex-col gap-3 rounded-xl border border-border/60 bg-card/40 p-5 transition-all duration-300 hover-glow",
         variant === "rich" && "p-6",
         className
       )}
@@ -51,7 +51,7 @@ export function ExperienceCard({
 
       <p className="font-mono text-xs text-primary">{item.highlight}</p>
 
-      <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+      <ul className="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
         {bullets.map((d) => (
           <li key={d} className="flex gap-2">
             <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-primary" />
@@ -61,17 +61,21 @@ export function ExperienceCard({
       </ul>
 
       {item.insight && (
-        <div className="rounded-lg border border-primary/25 bg-primary/[0.06] p-3">
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-primary">
+        // Deliberately a step down from the bullet text (13px vs 14px, snug
+        // leading, tighter padding) so it reads as a subordinate reflection
+        // rather than a second content block — with one on every role, a
+        // full-weight callout turns the timeline into a wall of boxes.
+        <div className="rounded-lg border border-primary/25 bg-primary/[0.06] px-3 py-2.5">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-primary/90">
             Insight
           </p>
-          <p className="mt-1.5 text-pretty text-sm leading-relaxed text-foreground/90">
+          <p className="mt-1 text-pretty text-[0.8125rem] leading-snug text-foreground/90">
             {item.insight}
           </p>
         </div>
       )}
 
-      <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border/50 pt-3">
+      <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border/50 pt-2.5">
         {item.tags.map((tag) => (
           <span
             key={tag}
