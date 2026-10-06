@@ -16,6 +16,25 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
+    id: "commodityplay",
+    company: "CommodityPlay.",
+    role: "Freelance Full-Stack Developer",
+    period: "Jun 2026 – Present",
+    startDate: "2026-06",
+    endDate: "2026-10",
+    location: "Singapore · Remote",
+    type: "Freelance",
+    summary:
+      "Freelance full-stack build for a commodity-trading career playbook — Next.js 15 web app plus an Expo mobile client.",
+    highlight: "Web + mobile on one API",
+    tags: ["Next.js 15", "Prisma", "Stripe"],
+    details: [
+      "Develop the Next.js 15 App Router web app on Neon Postgres with Prisma and Auth.js v5.",
+      "Model Starter / Pro / Elite membership tiers with Stripe one-time and subscription billing.",
+      "Extend the same API to an Expo React Native client so members share one account across web and mobile.",
+    ],
+  },
+  {
     id: "unr",
     company: "Universitas Ngurah Rai (UNR)",
     role: "Freelance Developer & Research Collaborator",
