@@ -1,13 +1,14 @@
-# Derren Winata | Data Science & Analytics — Portfolio
+# Derren Winata | Data Science, AI & Product Engineer — Portfolio
 
-A responsive single-page portfolio showcasing experience in data science, analytics, and software development. Built with React, TypeScript, and Tailwind CSS.
+A responsive portfolio showcasing experience across data science, analytics, AI, and full-stack product delivery. Built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
 - **Hero & About** — Introduction, role highlights, and bio
-- **Experience** — Timeline of roles (NUS, AI Singapore, Marina Bay Sands, Medisaya, Firsty.app)
+- **Experience** — Timeline of 13 roles (CommodityPlay., UNR, AI Singapore, 360 Cogni, NUS, Marina Bay Sands, and more), each closing with an *Insight* takeaway
 - **Featured case studies** — Impact-focused project summaries
-- **Projects** — Technical projects with GitHub links (360Cogni, EQ-5D-5L, Bassline, and more)
+- **Projects** — 12 technical case studies with problem, approach, and outcome (360 Cogni, CommodityPlay., Trichella, StyleSense AI, EQ-5D-5L, DDOG, S&P 500, Bayesian Pair Trading, Pulse, Sunnystep Strides, UNR, Halal Food Landscape)
+- **Research** — Publication in preparation: Bali's foreign tourist levy PWA and AI governance (Smart Digital Conference 2026)
 - **Skills & certifications** — Tech stack and credentials
 - **Contact** — Form with validation and serverless email via Supabase
 

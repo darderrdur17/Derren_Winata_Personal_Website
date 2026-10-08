@@ -39,11 +39,11 @@ export const experiences: ExperienceItem[] = [
       "The interesting problem wasn't the pages — it was making the paid tiers mean something. One account had to unlock the right content on web and mobile, with Stripe as the single source of truth for who gets what.",
     tags: ["Next.js 15", "Prisma", "Stripe", "Expo"],
     details: [
-      "Build the Next.js 15 App Router web app on Neon Postgres with Prisma, using Auth.js v5 for email/password and Google OAuth sign-in.",
-      "Implement the tiered membership model in Stripe — Career and Sales tracks across four monthly plans, subscription webhooks, and the customer billing portal.",
-      "Wire the access gates that make the tiers real: free Desk Glossary and Weekly Digest, Pro playbook chapters, resume templates and interview questions, up to Elite mentor connect and job openings.",
-      "Extend the same API to an Expo React Native client (Expo Router tabs for dashboard, playbook, glossary, and profile) so members share one account across web and mobile.",
-      "Ship the supporting surface: Resend transactional email, an admin panel for managing users and mentor questions, and seeded demo accounts with one-click sign-in.",
+      "Built the Next.js 15 App Router web app on Neon Postgres with Prisma, using Auth.js v5 for email/password and Google OAuth sign-in.",
+      "Implemented the tiered membership model in Stripe — Career and Sales tracks across four monthly plans, subscription webhooks, and the customer billing portal.",
+      "Wired the access gates that make the tiers real: free Desk Glossary and Weekly Digest, Pro playbook chapters, resume templates and interview questions, up to Elite mentor connect and job openings.",
+      "Extended the same API to an Expo React Native client (Expo Router tabs for dashboard, playbook, glossary, and profile) so members share one account across web and mobile.",
+      "Shipped the supporting surface: Resend transactional email, an admin panel for managing users and mentor questions, and seeded demo accounts with one-click sign-in.",
     ],
   },
   {
@@ -60,7 +60,10 @@ export const experiences: ExperienceItem[] = [
     highlight: "Bilingual EN/ID delivery",
     insight:
       "Two audiences pull a university site in opposite directions: prospective students need a clear path in, while staff need the institutional detail. The prototype had to hold both in one navigation, in two languages, without either side feeling bolted on.",
-    tags: ["Next.js", "Localisation", "Research"],
+    // Mirrors the `UNR Website Redesign` project's tech exactly — the prototype
+    // is a zero-build plain HTML/CSS/JS site, so a framework tag here would be
+    // wrong (and would contradict /projects).
+    tags: ["HTML", "CSS", "JavaScript"],
     details: [
       "Redesigned unr.ac.id as a bilingual Indonesian/English prototype — homepage, faculties, news, admissions, portal, and contact — with program filters, a testimonial slider, and an accessible mobile drawer.",
       "Produced the positioning and AI-perception audit and the technical specification the prototype was built from.",
@@ -300,61 +303,8 @@ export const experiences: ExperienceItem[] = [
 ];
 
 export const featuredExperiences = experiences.filter((exp) => exp.featured);
-export const otherExperiences = experiences.filter((exp) => !exp.featured);
 
 export const timelineExperiences = [...experiences].sort((a, b) => {
   if (a.endDate !== b.endDate) return b.endDate.localeCompare(a.endDate);
   return b.startDate.localeCompare(a.startDate);
 });
-
-export interface ExperienceHighlight {
-  label: string;
-  company: string;
-  title: string;
-  summary: string;
-  period: string;
-  extraCount: number;
-}
-
-export const experienceHighlights: ExperienceHighlight[] = [
-  {
-    label: "AI & Platforms",
-    company: "AI Singapore",
-    title: "Programme & Partnerships Assistant",
-    summary: "Shipped 3 platforms and ran ongoing QA across product launches.",
-    period: "Mar 2024 – Jul 2026",
-    extraCount: 2,
-  },
-  {
-    label: "Product",
-    company: "360 Cogni",
-    title: "Product Manager Intern",
-    summary: "Defined MVP roadmap, UX flows, and integrations for a cognitive health platform.",
-    period: "Jan 2026 – Jul 2026",
-    extraCount: 1,
-  },
-  {
-    label: "Research & Education",
-    company: "National University of Singapore",
-    title: "Research and product engineering",
-    summary: "EQ-5D-5L research tool, DSFP health app, educational jigsaw game, and MUIS data pipeline.",
-    period: "Sep 2025 – Mar 2026",
-    extraCount: 4,
-  },
-  {
-    label: "Analytics",
-    company: "Marina Bay Sands",
-    title: "eCommerce Analytics Intern",
-    summary: "Automated reporting, Data Layer rollout, and Tealium IQ tracking.",
-    period: "May 2024 – Dec 2024",
-    extraCount: 1,
-  },
-  {
-    label: "Startups",
-    company: "Sunnystep · Medisaya · Firsty.app",
-    title: "AI, software, and client development",
-    summary: "Marketing agents, health-data APIs, and APAC lead generation.",
-    period: "Feb 2025 – Apr 2026",
-    extraCount: 3,
-  },
-];

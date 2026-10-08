@@ -43,8 +43,8 @@ export const projects: Project[] = [
     insight:
       "I joined as the freelance developer on the technical team, so the interesting problem was the gating: a free glossary, a Pro playbook, and Elite mentor access had to be enforced consistently across web and mobile, from one identity and one billing system.",
     outcomes: [
-      "Develop the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5",
-      "Built the Stripe billing layer across four monthly plans on a Career and a Sales track, with webhooks and a customer portal",
+      "Built the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5",
+      "Implemented the Stripe billing layer across four monthly plans on a Career and a Sales track, with webhooks and a customer portal",
       "Extended the same API to an Expo React Native client with shared auth",
     ],
     tech: ["Next.js 15", "Prisma", "Stripe", "Expo"],
