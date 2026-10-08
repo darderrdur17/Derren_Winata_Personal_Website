@@ -36,3 +36,11 @@ supabase/.temp
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# Source material for scripts/optimize-assets.py and the resume pipeline.
+# Deliberately untracked: ~4.1MB of large binaries whose optimised outputs are
+# already committed and served from public/ (favicon.png, apple-touch-icon.png,
+# og/og-home.jpg, Derren_Winata_Resume.pdf). The only file a script reads back
+# is favicon-source.png, and that path already falls back to public/favicon.png
+# when the pristine copy is absent — so a fresh clone still builds cleanly.
+assets/
