@@ -20,6 +20,8 @@ const PROBLEM_BY_TITLE: Record<string, string> = {
     "F1 telemetry is published in bulk, but it arrives as raw lap data with no sense of what is measured and what is inferred. Race forecasts are usually presented as if they were observations. The problem was an explorer where a predicted finishing order can never be mistaken for a recorded lap — and where you control how much of a race weekend the forecast is allowed to know.",
   TennisIQ:
     "Tennis prediction write-ups tend to quote a single accuracy figure for both tours, often tuned and scored on the same seasons. The question was whether per-tour models, genuinely held-out seasons, and an honest baseline could beat guessing — and stay honest once the numbers were published.",
+  ViralIQ:
+    "Virality is the most over-claimed target in social analytics: models train on engagement that only exists after a video has been seen, then present the result as a forecast. The problem was to predict from pre-publication metadata alone — caption, hashtags, duration, format, timing, language, country, commercial flags, sound history — and to be explicit about the ceiling that imposes.",
   "EQ-5D-5L TTO Research Tool":
     "Researchers running Time Trade-Off studies needed a multilingual, accessibility-compliant utility-calculation tool that worked in the browser — without sacrificing research-grade data integrity or GDPR-aligned data handling.",
   "DDOG Earnings Tracker":
@@ -45,6 +47,8 @@ const APPROACH_BY_TITLE: Record<string, string> = {
     "Built a zero-framework ES-module frontend on ECharts with three views: Predict (season timeline, forecasts, title odds), Results (every round with classification and standings), and Teams (constructor points progression). Forecast stages gate what data the model receives, while the visible filters are deliberately view-only. Data comes from a containerised API, so the static deployment degrades to a clearly-labelled snapshot instead of pretending to be live.",
   TennisIQ:
     "Built per-tour pipelines over 27 ATP and 21 WTA seasons, then scored every candidate — logistic regression, gradient boosting, raw Elo, and a constant baseline — on held-out seasons only. Gradient boosting held 64.7% on both tours against a 50% coin flip, and the Elo ratings, player comparison, and live hit-rate/Brier tracker ship alongside the backtests rather than after them.",
+  ViralIQ:
+    "Built a DuckDB and Polars pipeline over 148 monthly Parquet files (460.48 GB) from a 5.6B-video TikTok dataset, trained logistic regression, LightGBM, and CatBoost on 300,000 September rows, and scored 199,998 October rows the models never saw. Labels whose engagement stats predate publication are emitted as NULL rather than estimated, and the API returns a selection note explaining that logistic regression wins on PR-AUC while CatBoost wins at the decision cutoff.",
   "EQ-5D-5L TTO Research Tool":
     "Architected a full React/Node.js/PostgreSQL app with real-time utility calculations, an AI co-pilot for protocol guidance, and admin/interviewer dashboards. Hardened auth and accessibility for 4 languages.",
   "DDOG Earnings Tracker":

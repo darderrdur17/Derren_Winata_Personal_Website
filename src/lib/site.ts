@@ -104,8 +104,8 @@ export const siteRoutes = [
     blurb: `${numberWord(projectCount)} in-depth case studies`,
     // 53 chars
     title: "Projects — Full-Stack, AI & Data Work | Derren Winata",
-    // 149 chars
-    description: `${numberWord(projectCount)} selected projects — cognitive health, sports forecasting, health economics, Go/Kafka, and quant analysis. Problem, approach, outcome for each.`,
+    // 150 chars
+    description: `${numberWord(projectCount)} projects — cognitive health, sports forecasting, health economics, quant analysis, and virality modelling. Problem, approach, outcome for each.`,
   },
   {
     path: "/certifications",

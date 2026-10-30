@@ -36,8 +36,8 @@ export const homeSpotlightTitle = "360 Cogni";
 export const homeGridTitles = [
   "ApexIQ",
   "TennisIQ",
+  "ViralIQ",
   "DDOG Earnings Tracker",
-  "S&P 500 Sector Analysis",
 ] as const;
 
 export const projects: Project[] = [
@@ -82,6 +82,22 @@ export const projects: Project[] = [
     ],
     tech: ["React", "Recharts", "Gradient Boosting"],
     href: "https://tennisiq-self.vercel.app",
+  },
+  {
+    title: "ViralIQ",
+    summary:
+      "TikTok virality scoring from pre-publication metadata only — calibrated probabilities, SHAP explanations, and an evaluation that says what the model can't do.",
+    insight:
+      "Virality models usually train on engagement and then predict engagement. ViralIQ only sees what exists before a video is posted — caption, hashtags, duration, sound history — so the honest question was how much of a hit is knowable in advance. The answer is a ranking signal, not a prophecy, and the site is built to say so.",
+    outcomes: [
+      "Beat random by 2.18× on held-out data (PR-AUC 0.0318 vs 0.0146, ROC-AUC 0.742)",
+      "Nulled 34.72% of October labels whose stats predate publication rather than imputing them",
+      "Reported both the PR-AUC champion and the model that actually wins at the cutoff",
+    ],
+    tech: ["Python", "FastAPI", "CatBoost"],
+    // The repo is private, so this points at the live demo rather than a
+    // GitHub URL that would 404 for every visitor.
+    href: "https://vercel-mu-ochre-19.vercel.app",
   },
   {
     title: "EQ-5D-5L TTO Research Tool",
