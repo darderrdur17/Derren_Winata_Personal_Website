@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { siteConfig } from "@/lib/site";
 import { z } from "zod";
 
@@ -81,14 +80,25 @@ const ContactForm = () => {
         );
       }
 
-      // Optional email notification — don't fail the form if this step errors
-      if (supabase) {
-        try {
+      // Optional email notification — best-effort, and loaded lazily.
+      //
+      // The Supabase integration is a generated file that reads `localStorage`
+      // while it evaluates. A visitor with site data blocked (Safari "Block
+      // All Cookies", privacy extensions) made that throw at *import* time,
+      // which no ErrorBoundary can recover from. Importing it here means the
+      // failure is a rejected promise we can catch, and it keeps the client
+      // out of the initial bundle. The message is already saved by now, so a
+      // failure here costs only the notification.
+      try {
+        const { supabase } = await import("@/integrations/supabase/client");
+        if (supabase) {
           await supabase.functions.invoke("send-contact-email", {
             body: result.data,
           });
-        } catch (emailError) {
-          console.warn("Email notification failed:", emailError);
+        }
+      } catch (emailError) {
+        if (import.meta.env.DEV) {
+          console.warn("Email notification skipped:", emailError);
         }
       }
 
