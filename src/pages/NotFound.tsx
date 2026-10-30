@@ -19,7 +19,11 @@ const NotFound = () => {
   });
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    // Dev-only. A 404 is an expected outcome in production — reporting it as a
+    // console *error* there only pollutes monitoring and real-error counts.
+    if (import.meta.env.DEV) {
+      console.warn("404: attempted route", location.pathname);
+    }
   }, [location.pathname]);
 
   return (

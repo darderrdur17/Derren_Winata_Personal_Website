@@ -36,9 +36,11 @@ const CertificationsPage = () => {
             {certificationGroups.map((group) => (
               <div key={group.label}>
                 <div className="flex items-baseline gap-3">
-                  <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-primary">
+                  {/* A real <h2>: the credential titles below are <h3>, so
+                      leaving this as a <p> made the outline skip 1 → 3. */}
+                  <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-primary">
                     {group.label}
-                  </p>
+                  </h2>
                   <span className="hairline flex-1" aria-hidden="true" />
                   <span className="font-mono text-[0.7rem] text-muted-foreground">
                     {group.items.length} {group.items.length === 1 ? "credential" : "credentials"}
@@ -108,9 +110,9 @@ const CertificationsPage = () => {
 
             <div>
               <div className="flex items-baseline gap-3">
-                <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-primary">
+                <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-primary">
                   Awards
-                </p>
+                </h2>
                 <span className="hairline flex-1" aria-hidden="true" />
               </div>
               <ul className="mt-5 grid gap-4 sm:grid-cols-2">

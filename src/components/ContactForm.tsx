@@ -4,11 +4,21 @@ import { supabase } from "@/integrations/supabase/client";
 import { siteConfig } from "@/lib/site";
 import { z } from "zod";
 
+/** Characters as a person counts them — 5 emoji are 5, not 10. */
+const charLength = (value: string): number => [...value].length;
+
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z.string().trim().email("Please enter a valid email").max(255, "Email must be less than 255 characters"),
   subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000, "Message must be less than 2000 characters"),
+  // `.min(10)` counts UTF-16 units, which let a handful of emoji satisfy a
+  // ten-character minimum the server (counting characters) would reject.
+  // Both bounds go through the same count so client and server agree.
+  message: z
+    .string()
+    .trim()
+    .refine((v) => charLength(v) >= 10, "Message must be at least 10 characters")
+    .refine((v) => charLength(v) <= 2000, "Message must be less than 2000 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;

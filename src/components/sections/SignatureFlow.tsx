@@ -175,6 +175,7 @@ export function SignatureFlow() {
                     }}
                     type="button"
                     role="tab"
+                    id={`signature-tab-${step.index}`}
                     aria-selected={isActive}
                     aria-controls="signature-panel"
                     tabIndex={isActive ? 0 : -1}
@@ -209,6 +210,7 @@ export function SignatureFlow() {
           <div
             role="tabpanel"
             id="signature-panel"
+            aria-labelledby={`signature-tab-${activeStep.index}`}
             tabIndex={0}
             className="mt-6 rounded-2xl border border-border/60 bg-card/40 p-5 sm:p-6"
           >

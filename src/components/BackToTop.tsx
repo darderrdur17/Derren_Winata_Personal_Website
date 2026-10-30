@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { scrollBehavior } from "@/lib/motion";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,7 +22,7 @@ const BackToTop = () => {
     <button
       type="button"
       aria-label="Back to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={() => window.scrollTo({ top: 0, behavior: scrollBehavior() })}
       className="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-40 flex h-11 w-11 items-center justify-center rounded-md border border-border/60 bg-background/80 text-foreground shadow-lg backdrop-blur hover:bg-muted/50 transition-colors"
     >
       <ArrowUp size={18} />

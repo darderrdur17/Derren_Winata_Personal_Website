@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { navItems } from "@/lib/site";
@@ -7,6 +7,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,8 +19,44 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Escape closes the menu and hands focus back to the control that opened it.
+  // Without this the only way out was to click the toggle again, which is not
+  // discoverable from the keyboard.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsMobileMenuOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
+
+  // The sheet covers the top of the page, so tapping the content underneath it
+  // should dismiss it. Uses pointerdown rather than click so the menu closes
+  // before whatever was tapped receives the event.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [isMobileMenuOpen]);
+
+  // A route change (including browser back/forward) should never leave the
+  // sheet hanging open over the new page.
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <nav
+      ref={navRef}
+      aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-background/90 backdrop-blur-xl border-b-[3px] border-accent"
@@ -41,6 +79,7 @@ const Navbar = () => {
                 <Link
                   key={item.label}
                   to={item.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={`transition-colors duration-300 link-underline text-sm font-medium opacity-0 animate-fade-in-down ${
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -59,6 +98,7 @@ const Navbar = () => {
           </div>
 
           <button
+            ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-foreground p-2"
             aria-label="Toggle navigation menu"
@@ -80,6 +120,7 @@ const Navbar = () => {
                   key={item.label}
                   to={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  aria-current={location.pathname === item.href ? "page" : undefined}
                   className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-lg"
                 >
                   {item.label}

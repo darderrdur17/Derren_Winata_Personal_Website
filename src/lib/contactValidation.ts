@@ -48,6 +48,16 @@ const asString = (v: unknown): string =>
   typeof v === "string" ? v.trim() : "";
 
 /**
+ * Count characters the way a person counts them.
+ *
+ * `String.prototype.length` counts UTF-16 code units, so an emoji counts as
+ * two — five of them satisfied a "10 character" minimum that the visitor had
+ * visibly not met. Postgres `varchar(n)` counts characters too, so this also
+ * matches what the column will actually accept.
+ */
+const charLength = (value: string): number => [...value].length;
+
+/**
  * Validate a raw contact payload. Returns `ok: false` with a human-readable
  * `error` for any rejection, or `ok: true` with the trimmed, typed `value`.
  */
@@ -65,20 +75,20 @@ export function validateContact(input: ContactPayload = {}): ContactValidation {
     return { ok: false, error: "Invalid email format" };
   }
 
-  if (message.length < LIMITS.messageMin) {
+  if (charLength(message) < LIMITS.messageMin) {
     return { ok: false, error: "Message must be at least 10 characters" };
   }
 
-  if (name.length > LIMITS.name) {
+  if (charLength(name) > LIMITS.name) {
     return { ok: false, error: "Name is too long" };
   }
-  if (email.length > LIMITS.email) {
+  if (charLength(email) > LIMITS.email) {
     return { ok: false, error: "Email is too long" };
   }
-  if (subject.length > LIMITS.subject) {
+  if (charLength(subject) > LIMITS.subject) {
     return { ok: false, error: "Subject is too long" };
   }
-  if (message.length > LIMITS.messageMax) {
+  if (charLength(message) > LIMITS.messageMax) {
     return { ok: false, error: "Message is too long" };
   }
 
@@ -100,9 +110,12 @@ export function isHoneypotTripped(input: ContactPayload = {}): boolean {
 /**
  * Resolve an `Access-Control-Allow-Origin` value for a request.
  *
- * Returns the *requesting* origin only when it matches one of `allowed`
- * (compared by host, so http/https and www. variants can be normalised by
- * listing the apex). Returns `null` when the origin is missing or not
+ * Returns the *requesting* origin only when it exactly matches one of
+ * `allowed`. The comparison is scheme-sensitive: `new URL(...).host` alone
+ * would have accepted `http://` as well as `https://`, which lets a
+ * downgraded origin through even though every entry in the allow-list is
+ * HTTPS. `www.` and apex variants are distinct origins and must each be
+ * listed explicitly. Returns `null` when the origin is missing or not
  * permitted, so callers can simply skip the header.
  *
  * Echoing the verified origin (rather than `*`) is what locks the endpoint
@@ -117,7 +130,7 @@ export function resolveCorsOrigin(
     const incoming = new URL(origin);
     for (const candidate of allowed) {
       try {
-        if (new URL(candidate).host === incoming.host) return origin;
+        if (new URL(candidate).origin === incoming.origin) return origin;
       } catch {
         // Skip malformed allowed entries rather than crashing the request.
       }
@@ -145,8 +158,26 @@ export const PRODUCTION_ORIGINS = [
 
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX_ATTEMPTS = 5;
+/** Prune once the map grows past this, so a warm instance cannot leak. */
+const PRUNE_THRESHOLD = 256;
 
 const attempts = new Map<string, number[]>();
+
+/**
+ * Drop keys whose timestamps have all aged out.
+ *
+ * Without this the map only ever grew: each new sender added a key that was
+ * never revisited, and a long-lived instance would accumulate one entry per
+ * distinct email forever. Pruning is skipped below the threshold because the
+ * map is tiny in normal use and a full sweep on every request is wasteful.
+ */
+function pruneAttempts(now: number) {
+  for (const [key, times] of attempts) {
+    const live = times.filter((t) => now - t < RATE_WINDOW_MS);
+    if (live.length === 0) attempts.delete(key);
+    else if (live.length !== times.length) attempts.set(key, live);
+  }
+}
 
 /**
  * Record an attempt for `email` and report whether it is within budget.
@@ -158,6 +189,9 @@ export function checkRateLimit(email: string): {
   retryAfter?: number;
 } {
   const now = Date.now();
+
+  if (attempts.size > PRUNE_THRESHOLD) pruneAttempts(now);
+
   const key = email.toLowerCase();
   const windowed = (attempts.get(key) ?? []).filter(
     (t) => now - t < RATE_WINDOW_MS

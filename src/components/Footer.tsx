@@ -18,7 +18,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin size={13} className="text-primary" />
-              Singapore
+              {siteConfig.location}
             </div>
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
               <Sparkles size={13} className="mt-0.5 flex-shrink-0 text-primary" />

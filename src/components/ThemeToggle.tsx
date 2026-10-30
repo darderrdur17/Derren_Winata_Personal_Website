@@ -48,6 +48,18 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
     ? ((theme as ThemeValue | undefined) ?? "system")
     : undefined;
 
+  // A stored value we don't recognise (hand-edited, or written by an older
+  // build) leaves <html> carrying a class no stylesheet defines. next-themes
+  // only ever removes classes it knows about, so the stray one has to be
+  // cleared by hand before falling back to the documented default.
+  useEffect(() => {
+    if (!mounted) return;
+    if (theme && !OPTIONS.some((option) => option.value === theme)) {
+      document.documentElement.classList.remove(theme);
+      setTheme("system");
+    }
+  }, [mounted, theme, setTheme]);
+
   return (
     <div
       role="group"

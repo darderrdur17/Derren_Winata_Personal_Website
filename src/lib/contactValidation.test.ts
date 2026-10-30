@@ -49,6 +49,27 @@ describe("validateContact", () => {
     expect(validateContact({ name: "n", email: "a@b.com", subject: "s", message: "m".repeat(2001) }).error).toMatch(/Message is too long/);
   });
 
+  it("counts characters, not UTF-16 units", () => {
+    // Five emoji are five characters. Counting code units made them ten, so
+    // they slipped past a ten-character minimum the visitor had not met.
+    const fiveEmoji = validateContact({
+      name: "n",
+      email: "a@b.com",
+      subject: "s",
+      message: "👍👍👍👍👍",
+    });
+    expect(fiveEmoji.ok).toBe(false);
+    expect(fiveEmoji.error).toMatch(/10 characters/i);
+
+    const tenEmoji = validateContact({
+      name: "n",
+      email: "a@b.com",
+      subject: "s",
+      message: "👍".repeat(10),
+    });
+    expect(tenEmoji.ok).toBe(true);
+  });
+
   it("accepts non-string input gracefully (treats as empty)", () => {
     const r = validateContact({ name: 123, email: null, subject: undefined, message: [] });
     expect(r.ok).toBe(false);
@@ -79,6 +100,13 @@ describe("resolveCorsOrigin", () => {
     expect(resolveCorsOrigin("https://evil.example.com", allowed)).toBeNull();
     expect(resolveCorsOrigin("not-a-url", allowed)).toBeNull();
     expect(resolveCorsOrigin(undefined, allowed)).toBeNull();
+  });
+
+  it("rejects a downgraded scheme on an allowed host", () => {
+    // Host-only comparison used to let this through, even though every
+    // allow-listed entry is HTTPS.
+    expect(resolveCorsOrigin("http://derren-winata.com", allowed)).toBeNull();
+    expect(resolveCorsOrigin("http://www.derren-winata.com", allowed)).toBeNull();
   });
 });
 

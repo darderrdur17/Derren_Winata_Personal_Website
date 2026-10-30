@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { scrollBehavior } from "@/lib/motion";
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
@@ -8,7 +9,7 @@ const ScrollToTop = () => {
     if (hash) {
       const id = hash.replace("#", "");
       const scrollToHash = () => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(id)?.scrollIntoView({ behavior: scrollBehavior() });
       };
       const frame = window.requestAnimationFrame(scrollToHash);
       const timeout = window.setTimeout(scrollToHash, 150);

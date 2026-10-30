@@ -1,6 +1,7 @@
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
 import ContactForm from "./ContactForm";
 import { siteConfig } from "@/lib/site";
+import { AVAILABILITY_LABEL } from "@/data/site";
 import { useReveal } from "@/lib/hooks/useReveal";
 import { cn } from "@/lib/utils";
 
@@ -76,7 +77,8 @@ const Contact = () => {
               <p className="mb-8 leading-relaxed text-muted-foreground">
                 I'm{" "}
                 <span className="font-medium text-foreground">
-                  available for full time roles and freelance projects
+                  {/* Shared with the footer so the two can't drift apart. */}
+                  {AVAILABILITY_LABEL.toLowerCase()}
                 </span>
                 . Whether you're hiring, need help on a project, or just want to
                 say hi — my inbox is always open.

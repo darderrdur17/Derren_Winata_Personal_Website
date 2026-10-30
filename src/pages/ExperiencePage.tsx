@@ -34,6 +34,10 @@ const ExperiencePage = () => {
 
       <section className="relative pb-24">
         <Container>
+          {/* The cards below use <h3>, and the page's only other heading above
+              them is the <h1> — so the outline jumped 1 → 3. This names the
+              list for screen-reader navigation without adding visual noise. */}
+          <h2 className="sr-only">Roles</h2>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {timelineExperiences.map((exp) => (
               <li key={exp.id} className="flex flex-col">
