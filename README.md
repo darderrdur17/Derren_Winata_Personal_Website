@@ -7,7 +7,7 @@ A responsive portfolio showcasing experience across data science, analytics, AI,
 - **Hero & About** — Introduction, role highlights, and bio
 - **Experience** — Timeline of 13 roles (CommodityPlay., UNR, AI Singapore, 360 Cogni, NUS, Marina Bay Sands, and more), each closing with an *Insight* takeaway
 - **Featured case studies** — Impact-focused project summaries
-- **Projects** — 12 technical case studies with problem, approach, and outcome (360 Cogni, CommodityPlay., Trichella, StyleSense AI, EQ-5D-5L, DDOG, S&P 500, Bayesian Pair Trading, Pulse, Sunnystep Strides, UNR, Halal Food Landscape)
+- **Projects** — 11 technical case studies with problem, approach, and outcome (360 Cogni, ApexIQ, TennisIQ, EQ-5D-5L, DDOG, S&P 500, Bayesian Pair Trading, Pulse, Sunnystep Strides, UNR, Halal Food Landscape)
 - **Research** — Publication in preparation: Bali's foreign tourist levy PWA and AI governance (Smart Digital Conference 2026)
 - **Skills & certifications** — Tech stack and credentials
 - **Contact** — Form with validation and serverless email via Supabase

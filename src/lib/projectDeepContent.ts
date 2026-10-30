@@ -16,12 +16,10 @@
 const PROBLEM_BY_TITLE: Record<string, string> = {
   "360 Cogni":
     "Cognitive screening tools were either clinical-grade or generic consumer apps — nothing for families trying to act early. A real product needed to bridge assessment, brain training, and caregiver support without overwhelming the user.",
-  "CommodityPlay.":
-    "Commodity-trading careers are learned on the desk, but the guidance is scattered across PDFs, forums, and word of mouth. As the freelance developer on the technical team, my part was packaging it into a structured product — and gating it behind tiers that actually hold across web and mobile.",
-  Trichella:
-    "Scalp and hair-loss assessment usually means a clinic visit. The question was whether a single uploaded photo, paired with a vision model, could produce a report a user would trust and could hand to a specialist.",
-  "StyleSense AI":
-    "Wardrobe apps ask users to type everything in by hand, then ignore the context that actually decides an outfit — weather, place, and season. The goal was to make that context arrive for free.",
+  ApexIQ:
+    "F1 telemetry is published in bulk, but it arrives as raw lap data with no sense of what is measured and what is inferred. Race forecasts are usually presented as if they were observations. The problem was an explorer where a predicted finishing order can never be mistaken for a recorded lap — and where you control how much of a race weekend the forecast is allowed to know.",
+  TennisIQ:
+    "Tennis prediction write-ups tend to quote a single accuracy figure for both tours, often tuned and scored on the same seasons. The question was whether per-tour models, genuinely held-out seasons, and an honest baseline could beat guessing — and stay honest once the numbers were published.",
   "EQ-5D-5L TTO Research Tool":
     "Researchers running Time Trade-Off studies needed a multilingual, accessibility-compliant utility-calculation tool that worked in the browser — without sacrificing research-grade data integrity or GDPR-aligned data handling.",
   "DDOG Earnings Tracker":
@@ -43,12 +41,10 @@ const PROBLEM_BY_TITLE: Record<string, string> = {
 const APPROACH_BY_TITLE: Record<string, string> = {
   "360 Cogni":
     "Defined scope across screening, brain training, and caregiver support. Spec'd UX flows, mapped integrations (GMS assessment, Supabase, Vercel, SendGrid), and shipped the live MVP at 360cogni.com.",
-  "CommodityPlay.":
-    "Built the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5, plus the Stripe billing layer behind four monthly plans split across a Career and a Sales track. Extended the same API to an Expo React Native client, so members share one account across web and mobile.",
-  Trichella:
-    "Wired an image-upload flow to a GPT-4o analysis endpoint that returns an overall score, six diagnostic conditions, and six scalp metrics. Findings and recommendations render on screen and export to a formatted PDF via jsPDF.",
-  "StyleSense AI":
-    "Built a Next.js 16 app with per-user wardrobe storage in Postgres, AI garment detection via Gemini (OpenAI fallback), and Open-Meteo for live forecasts and historical weather. EXIF parsing plus reverse geocoding fills place and date on upload.",
+  ApexIQ:
+    "Built a zero-framework ES-module frontend on ECharts with three views: Predict (season timeline, forecasts, title odds), Results (every round with classification and standings), and Teams (constructor points progression). Forecast stages gate what data the model receives, while the visible filters are deliberately view-only. Data comes from a containerised API, so the static deployment degrades to a clearly-labelled snapshot instead of pretending to be live.",
+  TennisIQ:
+    "Built per-tour pipelines over 27 ATP and 21 WTA seasons, then scored every candidate — logistic regression, gradient boosting, raw Elo, and a constant baseline — on held-out seasons only. Gradient boosting held 64.7% on both tours against a 50% coin flip, and the Elo ratings, player comparison, and live hit-rate/Brier tracker ship alongside the backtests rather than after them.",
   "EQ-5D-5L TTO Research Tool":
     "Architected a full React/Node.js/PostgreSQL app with real-time utility calculations, an AI co-pilot for protocol guidance, and admin/interviewer dashboards. Hardened auth and accessibility for 4 languages.",
   "DDOG Earnings Tracker":

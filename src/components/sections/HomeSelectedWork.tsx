@@ -4,7 +4,7 @@ import { Container } from "@/components/sections/Container";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { ProjectSpotlight } from "@/components/sections/ProjectSpotlight";
-import { projects } from "@/data/projects";
+import { projects, homeGridTitles, homeSpotlightTitle } from "@/data/projects";
 import { categoryFromTech } from "@/lib/projectMeta";
 import { siteConfig } from "@/lib/site";
 
@@ -16,18 +16,13 @@ import { siteConfig } from "@/lib/site";
  * Insight" storytelling lives on /projects so the homepage rhythm stays
  * scannable.
  *
- * The grid leads with the most recent builds (2026) so the homepage reflects
- * current work; the full curated set — including the earlier research and
- * engineering projects — lives on /projects.
+ * Which projects appear here is an editorial choice, defined in
+ * `@/data/projects` as `homeSpotlightTitle` / `homeGridTitles` so that
+ * `projects.test.ts` can prove every pick still resolves.
  */
 export function HomeSelectedWork() {
-  const spotlight = projects.find((p) => p.title === "360 Cogni")!;
-  const rest = [
-    projects.find((p) => p.title === "CommodityPlay.")!,
-    projects.find((p) => p.title === "Trichella")!,
-    projects.find((p) => p.title === "DDOG Earnings Tracker")!,
-    projects.find((p) => p.title === "StyleSense AI")!,
-  ];
+  const spotlight = projects.find((p) => p.title === homeSpotlightTitle)!;
+  const rest = homeGridTitles.map((title) => projects.find((p) => p.title === title)!);
 
   return (
     <section

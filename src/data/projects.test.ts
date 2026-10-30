@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { projects } from "./projects";
+import { projects, homeGridTitles, homeSpotlightTitle } from "./projects";
 
 describe("projects — curated portfolio data", () => {
   it("keeps the flagship first — JSON-LD and the homepage spotlight key off it", () => {
@@ -25,5 +25,14 @@ describe("projects — curated portfolio data", () => {
   it("has unique titles — look-ups resolve projects by exact title", () => {
     const titles = projects.map((p) => p.title);
     expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it("resolves every homepage pick — the grid non-null asserts these", () => {
+    // The homepage looks each title up and asserts non-null, so a rename or a
+    // removal that forgets the curation list is a render-time crash rather than
+    // a test failure. This converts it back into a test failure.
+    for (const title of [homeSpotlightTitle, ...homeGridTitles]) {
+      expect(projects.some((p) => p.title === title)).toBe(true);
+    }
   });
 });

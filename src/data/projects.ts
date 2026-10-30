@@ -21,6 +21,25 @@ export interface Project {
  *   - Titles are unique — the homepage grid and the ProjectsPage deep-content
  *     look-ups resolve projects by exact title.
  */
+/**
+ * Homepage curation — the spotlight plus the four grid cards.
+ *
+ * The homepage is an editorial edit, not a slice of `projects`: it leads with
+ * the newest live builds and then the strongest analytics work, so a visitor
+ * sees current work rather than a changelog. Keeping the titles here (rather
+ * than inline in the component) lets `projects.test.ts` assert that every pick
+ * still resolves — the grid looks them up by exact title and non-null asserts,
+ * so a rename or removal would otherwise throw at render time.
+ */
+export const homeSpotlightTitle = "360 Cogni";
+
+export const homeGridTitles = [
+  "ApexIQ",
+  "TennisIQ",
+  "DDOG Earnings Tracker",
+  "S&P 500 Sector Analysis",
+] as const;
+
 export const projects: Project[] = [
   {
     title: "360 Cogni",
@@ -37,46 +56,32 @@ export const projects: Project[] = [
     href: "https://360cogni.com",
   },
   {
-    title: "CommodityPlay.",
+    title: "ApexIQ",
     summary:
-      "Freelance build for a commodity-trading career and sales playbook — a Next.js 15 web app plus an Expo mobile client.",
+      "Formula 1 telemetry analytics and race forecasting, with measured telemetry and model output kept visibly apart.",
     insight:
-      "I joined as the freelance developer on the technical team, so the interesting problem was the gating: a free glossary, a Pro playbook, and Elite mentor access had to be enforced consistently across web and mobile, from one identity and one billing system.",
+      "The hard part wasn't the forecast, it was information leakage: you choose how much of a race weekend the model is allowed to know, and the on-screen filters never touch the model's numbers — so a predicted finishing order can't be misread as a recorded lap.",
     outcomes: [
-      "Built the Next.js 15 App Router app on Neon Postgres with Prisma and Auth.js v5",
-      "Implemented the Stripe billing layer across four monthly plans on a Career and a Sales track, with webhooks and a customer portal",
-      "Extended the same API to an Expo React Native client with shared auth",
+      "Built Predict, Results, and Teams views over one F1 season dataset",
+      "Added stage-aware forecasts so a model only sees the part of the weekend it is allowed to",
+      "Shipped a zero-framework ES-module frontend on ECharts over a containerised API",
     ],
-    tech: ["Next.js 15", "Prisma", "Stripe", "Expo"],
-    href: "https://www.commodityplay.ai",
+    tech: ["JavaScript", "ECharts", "Docker"],
+    href: "https://apexiq-theta.vercel.app",
   },
   {
-    title: "Trichella",
+    title: "TennisIQ",
     summary:
-      "AI scalp diagnostics — upload an image, get a scored trichology report with six conditions and a PDF export.",
+      "Tennis match-prediction app trained on ATP and WTA history, with per-tour models, Elo ratings, and published backtests.",
     insight:
-      "This is a diagnostic product, so trust is the design problem: every AI score has to arrive with the condition, the metric, and the recommendation that justified it — then leave the app as a clean, printable report.",
+      "The two tours are not one problem, so nothing is pooled: each tour gets its own model, ratings, and backtest, and accuracy is only ever quoted on seasons the model never trained on — measured against a coin flip rather than against itself.",
     outcomes: [
-      "Built an image-to-report pipeline on GPT-4o returning a score, 6 conditions, and 6 metrics",
-      "Generated clinical findings and personalised recommendations per scan",
-      "Exported formatted PDF reports that match the on-screen results",
+      "Trained separate ATP and WTA models on 124,000+ matches and 4,700+ tournaments",
+      "Held 64.7% winner accuracy on unseen seasons — 14.7 points over a coin flip",
+      "Added Elo ratings, player comparison, and a live tracker of hit rate and Brier score",
     ],
-    tech: ["React", "GPT-4o", "jsPDF"],
-    href: "https://github.com/darderrdur17/Trichella",
-  },
-  {
-    title: "StyleSense AI",
-    summary:
-      "Context-aware wardrobe assistant that plans outfits from weather, location, and your own digital closet.",
-    insight:
-      "The best recommendation depends on data the user never enters — so the app quietly pulls historical weather for memories, live forecasts for trips, and EXIF geodata from photos, making context free.",
-    outcomes: [
-      "Built a Next.js 16 app with auth, a digital wardrobe, and per-user Postgres storage",
-      "Added AI garment detection via Gemini, with an OpenAI fallback",
-      "Pulled live forecasts and historical weather from Open-Meteo with EXIF/GPS geocoding",
-    ],
-    tech: ["Next.js 16", "Gemini", "Open-Meteo"],
-    href: "https://github.com/darderrdur17/stylesense-app",
+    tech: ["React", "Recharts", "Gradient Boosting"],
+    href: "https://tennisiq-self.vercel.app",
   },
   {
     title: "EQ-5D-5L TTO Research Tool",
@@ -184,6 +189,8 @@ export const projects: Project[] = [
       "Used Python, Pandas, and Selenium for collection and cleanup",
     ],
     tech: ["Python", "Pandas", "Selenium"],
-    href: "https://github.com/darderrdur17/Halal_food_landscape",
+    // The Halal pipeline has no public repo yet, so this points at the profile
+    // rather than a 404. Swap in the repo URL once it is published.
+    href: GITHUB_URL,
   },
 ];
