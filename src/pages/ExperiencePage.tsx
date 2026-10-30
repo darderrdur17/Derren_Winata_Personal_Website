@@ -21,6 +21,7 @@ const ExperiencePage = () => {
       <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-20">
         <Container narrow>
           <SectionHeader
+            as="h1"
             eyebrow="Experience"
             title="Career timeline."
             lede={`All ${timelineExperiences.length} roles, newest first. Analytics, product, research, and full-stack delivery — spanning Singapore and the wider region.`}

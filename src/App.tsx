@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteFallback from "./components/RouteFallback";
-import ErrorBoundary from "./components/ErrorBoundary";
+import { RoutedErrorBoundary } from "./components/ErrorBoundary";
 
 // Only the landing page is in the initial bundle — it is what organic traffic
 // and shared links hit first. Every other route loads on demand.
@@ -32,7 +32,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <ErrorBoundary>
+          <RoutedErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<Index />} />
@@ -43,7 +43,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
-          </ErrorBoundary>
+          </RoutedErrorBoundary>
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

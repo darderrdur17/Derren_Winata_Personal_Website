@@ -34,21 +34,14 @@ export interface RouteMeta {
    * previously injected route block is removed on navigation/unmount.
    */
   jsonLd?: unknown;
+  /**
+   * Keep the route out of search indexes. Used by the 404 page: a catch-all
+   * route is still served with HTTP 200 by the SPA host, so `noindex` plus the
+   * absence of a canonical is what stops it being read as a soft 404 that
+   * competes with the real homepage.
+   */
+  noindex?: boolean;
 }
-
-const ensureMeta = (
-  selector: string,
-  attr: string,
-  create?: HTMLElement
-): HTMLElement | null => {
-  let el = document.head.querySelector(selector) as HTMLElement | null;
-  if (!el && create) {
-    el = create;
-    document.head.appendChild(el);
-  }
-  if (el && attr) el.setAttribute(attr, el.getAttribute(attr) ?? "");
-  return el;
-};
 
 const setMeta = (selector: string, key: string, value: string) => {
   let el = document.head.querySelector(selector) as HTMLMetaElement | null;
@@ -95,6 +88,10 @@ const capture = (): Record<string, string> => {
     if (!k) return;
     if (el instanceof HTMLMetaElement) out[k] = el.getAttribute("content") ?? "";
   });
+  // Canonical is a <link>, not a <meta>, so it needs its own slot — the
+  // noindex route removes it and must be able to put it back on unmount.
+  const canonical = document.head.querySelector('link[rel="canonical"]');
+  out.__canonical = canonical?.getAttribute("href") ?? "";
   out.__title = document.title;
   return out;
 };
@@ -108,6 +105,7 @@ const restore = (snapshot: Record<string, string>) => {
         : "");
     if (k && k in snapshot) el.setAttribute("content", snapshot[k]);
   });
+  if (snapshot.__canonical) setLink("canonical", snapshot.__canonical);
   document.title = snapshot.__title;
 };
 
@@ -146,6 +144,16 @@ export function useDocumentMeta(meta: RouteMeta) {
     setMeta('meta[name="twitter:image:alt"]', "name:twitter:image:alt", imageAlt);
 
     setLink("canonical", url);
+    setMeta('meta[name="robots"]', "name:robots", "index,follow,max-image-preview:large");
+
+    // A noindex route (the 404 catch-all) must not advertise a canonical: an
+    // SPA 404 is served as 200, so a canonical pointing at the homepage would
+    // invite Google to treat the missing URL as a duplicate of "/" rather than
+    // as a dead end.
+    if (meta.noindex) {
+      setMeta('meta[name="robots"]', "name:robots", "noindex,follow");
+      document.head.querySelector('link[rel="canonical"]')?.remove();
+    }
 
     // Route-level structured data: replace any previously injected block so we
     // never leak one route's JSON-LD into another. The static Person/WebSite
@@ -171,9 +179,7 @@ export function useDocumentMeta(meta: RouteMeta) {
     meta.image,
     meta.imageAlt,
     meta.type,
+    meta.noindex,
     jsonLdKey,
   ]);
 }
-
-// Suppress unused-parameter lint: ensureMeta reserved for future use.
-void ensureMeta;

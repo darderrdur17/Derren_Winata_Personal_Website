@@ -61,16 +61,6 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
           return;
         }
 
-        const supabaseUrl = env.VITE_SUPABASE_URL;
-        const secretKey = env.SUPABASE_SECRET_KEY;
-
-        if (!supabaseUrl || !secretKey) {
-          res.statusCode = 500;
-          res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ error: "Server configuration error" }));
-          return;
-        }
-
         try {
           const body = JSON.parse(await readBody(req)) as ContactPayload;
 
@@ -97,6 +87,20 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
             res.setHeader("Retry-After", String(rate.retryAfter ?? 60));
             res.setHeader("Content-Type", "application/json");
             res.end(JSON.stringify({ error: "Too many requests, please try again later" }));
+            return;
+          }
+
+          // Configuration is checked *after* the honeypot and validation so the
+          // dev server answers exactly like production does. Checking it first
+          // meant a bot-filled honeypot returned 500 in dev but 200 in prod —
+          // the one divergence this file exists to prevent.
+          const supabaseUrl = env.VITE_SUPABASE_URL;
+          const secretKey = env.SUPABASE_SECRET_KEY;
+
+          if (!supabaseUrl || !secretKey) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ error: "Server configuration error" }));
             return;
           }
 

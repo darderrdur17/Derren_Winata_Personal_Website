@@ -1,30 +1,36 @@
-import { useEffect, useRef, useState } from "react";
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
 import ContactForm from "./ContactForm";
 import { siteConfig } from "@/lib/site";
+import { useReveal } from "@/lib/hooks/useReveal";
+import { cn } from "@/lib/utils";
+
+/**
+ * Contact panel for `/contact`.
+ *
+ * The page supplies the single <h1> and lede via `SectionHeader`, so this
+ * component deliberately starts at the two-column grid — it used to render a
+ * second "06. Get In Touch" header, which duplicated the page heading and
+ * carried a section number that only made sense on the homepage.
+ *
+ * Reveal-on-scroll uses the shared `useReveal` hook rather than a local
+ * IntersectionObserver so it short-circuits under `prefers-reduced-motion`
+ * like every other section.
+ */
+interface ContactChannel {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  /** Omitted for non-navigable rows (e.g. location). */
+  href?: string;
+}
+
+const rowClass =
+  "flex items-center gap-4 rounded-lg border p-4 transition-all duration-300";
 
 const Contact = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const { ref, visible } = useReveal<HTMLElement>({ threshold: 0.05 });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const contactLinks = [
+  const contactLinks: ContactChannel[] = [
     {
       icon: <Mail size={20} />,
       label: "Email",
@@ -43,64 +49,102 @@ const Contact = () => {
       value: "@darderrdur17",
       href: siteConfig.social.github,
     },
+    // Location is not a destination. It used to render as `href="#"`, which
+    // scrolled the page to the top and appended a bare "#" to the URL.
     {
       icon: <MapPin size={20} />,
       label: "Location",
       value: siteConfig.location,
-      href: "#",
     },
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-16 sm:py-24 relative">
+    <section id="contact" ref={ref} className="relative py-8 sm:py-12">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto min-w-0">
-          {/* Section Header */}
-          <div className={`flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            <span className="font-mono text-primary">06.</span>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">Get In Touch</h2>
-            <div className="flex-1 h-px bg-border" />
-          </div>
-
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="mx-auto min-w-0 max-w-5xl">
+          <div className="grid gap-8 lg:grid-cols-5 lg:gap-12">
             {/* Left Side - Info */}
-            <div className={`lg:col-span-2 ${isVisible ? "animate-slide-in-left delay-100" : "opacity-0"}`}>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
+            <div
+              className={cn(
+                "lg:col-span-2",
+                visible ? "animate-slide-in-left delay-100" : "opacity-0"
+              )}
+            >
+              <h2 className="mb-4 text-xl font-semibold text-foreground">
                 Let's work together
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                I'm <span className="text-foreground font-medium">available for full time roles and freelance projects</span>.
-                Whether you're hiring, need help on a project, or just want to say hi — my inbox is always open.
+              </h2>
+              <p className="mb-8 leading-relaxed text-muted-foreground">
+                I'm{" "}
+                <span className="font-medium text-foreground">
+                  available for full time roles and freelance projects
+                </span>
+                . Whether you're hiring, need help on a project, or just want to
+                say hi — my inbox is always open.
               </p>
 
               {/* Contact Links */}
               <div className="space-y-4">
-                {contactLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-4 p-4 rounded-lg bg-secondary/50 hover:bg-secondary border border-transparent hover:border-primary/30 transition-all duration-300 group"
-                  >
-                    <div className="text-muted-foreground group-hover:text-primary transition-colors">
-                      {link.icon}
-                    </div>
-                    <div>
-                      <p className="text-foreground font-medium text-sm">{link.label}</p>
-                      <p className="text-muted-foreground text-xs">{link.value}</p>
-                    </div>
-                  </a>
-                ))}
+                {contactLinks.map((link) => {
+                  const body = (
+                    <>
+                      <div className="text-muted-foreground transition-colors group-hover:text-primary">
+                        {link.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">
+                          {link.label}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {link.value}
+                        </p>
+                      </div>
+                    </>
+                  );
+
+                  if (!link.href) {
+                    return (
+                      <div
+                        key={link.label}
+                        className={cn(
+                          rowClass,
+                          "group border-transparent bg-secondary/50"
+                        )}
+                      >
+                        {body}
+                      </div>
+                    );
+                  }
+
+                  const external = link.href.startsWith("http");
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className={cn(
+                        rowClass,
+                        "group border-transparent bg-secondary/50 hover:border-primary/30 hover:bg-secondary"
+                      )}
+                    >
+                      {body}
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
             {/* Right Side - Form */}
-            <div className={`lg:col-span-3 ${isVisible ? "animate-slide-in-right delay-200" : "opacity-0"}`}>
+            <div
+              className={cn(
+                "lg:col-span-3",
+                visible ? "animate-slide-in-right delay-200" : "opacity-0"
+              )}
+            >
               <div className="glass-card rounded-xl p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg font-semibold text-foreground mb-6">
+                <h2 className="mb-6 text-lg font-semibold text-foreground">
                   Send me a message
-                </h3>
+                </h2>
                 <ContactForm />
               </div>
             </div>

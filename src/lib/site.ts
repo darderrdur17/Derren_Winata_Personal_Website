@@ -5,6 +5,30 @@
  *
  * Update `canonicalOrigin` once and the whole site follows.
  */
+
+import { projects } from "@/data/projects";
+import { experiences } from "@/data/experiences";
+import { certificationGroups } from "@/data/certifications";
+
+/**
+ * Counts are derived, never typed. The nav blurbs and meta descriptions below
+ * used to hardcode "Twelve case studies" / "13 roles" / "17 credentials",
+ * which silently went stale the moment a project or role was added or removed.
+ * `site.test.ts` only checks length limits, so nothing would have caught it.
+ */
+const WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+  "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
+  "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty",
+];
+
+const numberWord = (n: number): string => WORDS[n] ?? String(n);
+
+const projectCount = projects.length;
+const roleCount = experiences.length;
+const certCount = certificationGroups.reduce((n, g) => n + g.items.length, 0);
+const certTrackCount = certificationGroups.length;
+
 export const siteConfig = {
   name: "Derren Winata",
   shortName: "DW",
@@ -68,32 +92,29 @@ export const siteRoutes = [
   {
     path: "/experience",
     label: "Experience",
-    blurb: "13 roles, timeline & research",
+    blurb: `${roleCount} roles, timeline & research`,
     // 58 chars
     title: "Career Timeline — Data, Product & AI Roles | Derren Winata",
     // 154 chars
-    description:
-      "13 roles across AI Singapore, 360 Cogni, UNR, Marina Bay Sands, and NUS — analytics, product, research, and full-stack delivery. Timeline, newest first.",
+    description: `${roleCount} roles across AI Singapore, 360 Cogni, UNR, Marina Bay Sands, and NUS — analytics, product, research, and full-stack delivery. Timeline, newest first.`,
   },
   {
     path: "/projects",
     label: "Projects",
-    blurb: "Twelve in-depth case studies",
+    blurb: `${numberWord(projectCount)} in-depth case studies`,
     // 53 chars
     title: "Projects — Full-Stack, AI & Data Work | Derren Winata",
-    // 152 chars
-    description:
-      "Twelve selected projects — SaaS, AI diagnostics, health-economics research, Go/Kafka pipelines, and quant analysis. Problem, approach, outcome for each.",
+    // 149 chars
+    description: `${numberWord(projectCount)} selected projects — cognitive health, sports forecasting, health economics, Go/Kafka, and quant analysis. Problem, approach, outcome for each.`,
   },
   {
     path: "/certifications",
     label: "Certifications",
-    blurb: "17 credentials, four tracks",
+    blurb: `${certCount} credentials, ${numberWord(certTrackCount).toLowerCase()} tracks`,
     // 58 chars
     title: "Certifications — AI, Data & PM Credentials | Derren Winata",
     // 152 chars
-    description:
-      "17 credentials across AI & LLM, data engineering, analytics, project management, and finance — Snowflake, IBM, Google, Anthropic, Databricks, Bloomberg.",
+    description: `${certCount} credentials across AI & LLM, data engineering, analytics, project management, and finance — Snowflake, IBM, Google, Anthropic, Databricks, Bloomberg.`,
   },
   {
     path: "/contact",

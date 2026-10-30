@@ -162,6 +162,7 @@ export function SignatureFlow() {
               return (
                 <li
                   key={step.index}
+                  role="presentation"
                   className={cn(
                     "relative flex flex-1 items-stretch",
                     idx < signatureSteps.length - 1 &&
@@ -175,7 +176,7 @@ export function SignatureFlow() {
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    aria-controls={`signature-panel-${step.index}`}
+                    aria-controls="signature-panel"
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => setActive(idx)}
                     onFocus={() => setActive(idx)}
@@ -203,9 +204,11 @@ export function SignatureFlow() {
             })}
           </ol>
 
+          {/* One stable panel id: only the active step renders, so per-step ids
+              would leave every inactive tab's aria-controls dangling. */}
           <div
             role="tabpanel"
-            id={`signature-panel-${activeStep.index}`}
+            id="signature-panel"
             tabIndex={0}
             className="mt-6 rounded-2xl border border-border/60 bg-card/40 p-5 sm:p-6"
           >

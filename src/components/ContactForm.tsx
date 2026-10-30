@@ -93,7 +93,11 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    // `noValidate` is load-bearing: without it the browser's own constraint
+    // validation on `type="email"` blocks submit *before* handleSubmit runs, so
+    // a bad address shows a native tooltip while every other field shows the
+    // styled inline error. Turning it off makes Zod the only validator.
+    <form onSubmit={handleSubmit} noValidate className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         {/* Name Field */}
         <div className="space-y-2">
@@ -107,13 +111,15 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your name"
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "name-error" : undefined}
             className={`w-full px-4 py-3 rounded-lg bg-secondary border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground/50 ${
               errors.name ? "border-destructive" : "border-border hover:border-primary/50"
             }`}
           />
           {errors.name && (
-            <p className="text-destructive text-xs flex items-center gap-1">
-              <AlertCircle size={12} />
+            <p id="name-error" role="alert" className="text-destructive text-xs flex items-center gap-1">
+              <AlertCircle size={12} aria-hidden="true" />
               {errors.name}
             </p>
           )}
@@ -131,13 +137,15 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="your@email.com"
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? "email-error" : undefined}
             className={`w-full px-4 py-3 rounded-lg bg-secondary border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground/50 ${
               errors.email ? "border-destructive" : "border-border hover:border-primary/50"
             }`}
           />
           {errors.email && (
-            <p className="text-destructive text-xs flex items-center gap-1">
-              <AlertCircle size={12} />
+            <p id="email-error" role="alert" className="text-destructive text-xs flex items-center gap-1">
+              <AlertCircle size={12} aria-hidden="true" />
               {errors.email}
             </p>
           )}
@@ -156,13 +164,15 @@ const ContactForm = () => {
           value={formData.subject}
           onChange={handleChange}
           placeholder="What's this about?"
+          aria-invalid={errors.subject ? true : undefined}
+          aria-describedby={errors.subject ? "subject-error" : undefined}
           className={`w-full px-4 py-3 rounded-lg bg-secondary border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground/50 ${
             errors.subject ? "border-destructive" : "border-border hover:border-primary/50"
           }`}
         />
         {errors.subject && (
-          <p className="text-destructive text-xs flex items-center gap-1">
-            <AlertCircle size={12} />
+          <p id="subject-error" role="alert" className="text-destructive text-xs flex items-center gap-1">
+            <AlertCircle size={12} aria-hidden="true" />
             {errors.subject}
           </p>
         )}
@@ -180,13 +190,15 @@ const ContactForm = () => {
           onChange={handleChange}
           placeholder="Tell me about your project or just say hello..."
           rows={5}
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? "message-error" : undefined}
           className={`w-full px-4 py-3 rounded-lg bg-secondary border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground/50 resize-none ${
             errors.message ? "border-destructive" : "border-border hover:border-primary/50"
           }`}
         />
         {errors.message && (
-          <p className="text-destructive text-xs flex items-center gap-1">
-            <AlertCircle size={12} />
+          <p id="message-error" role="alert" className="text-destructive text-xs flex items-center gap-1">
+            <AlertCircle size={12} aria-hidden="true" />
             {errors.message}
           </p>
         )}
@@ -211,7 +223,7 @@ const ContactForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-8 py-4 rounded-lg bg-gradient-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+        className="btn-primary w-full px-8 py-4 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         {isSubmitting ? (
           <>
@@ -228,16 +240,22 @@ const ContactForm = () => {
 
       {/* Status Messages */}
       {submitStatus === "success" && (
-        <div className="flex items-center gap-2 text-primary p-4 rounded-lg bg-primary/10 border border-primary/20">
-          <CheckCircle size={20} />
+        <div
+          role="status"
+          className="flex items-center gap-2 text-primary p-4 rounded-lg bg-primary/10 border border-primary/20"
+        >
+          <CheckCircle size={20} aria-hidden="true" />
           <span>Message saved successfully! I'll get back to you soon.</span>
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive">
+        <div
+          role="alert"
+          className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive"
+        >
           <div className="flex items-center gap-2">
-            <AlertCircle size={20} />
+            <AlertCircle size={20} aria-hidden="true" />
             <span className="font-medium">Message not sent.</span>
           </div>
           {/* Never dead-end a recruiter: give them a path that always works. */}

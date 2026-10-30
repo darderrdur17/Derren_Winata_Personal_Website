@@ -27,6 +27,7 @@ const ProjectsPage = () => {
       <section className="relative pt-28 pb-8 sm:pt-36 sm:pb-12">
         <Container>
           <SectionHeader
+            as="h1"
             eyebrow="Projects"
             title="Selected work, in depth."
             lede="Each project below is the deep cut — problem, approach, and outcome. The homepage spotlight just shows the headline."

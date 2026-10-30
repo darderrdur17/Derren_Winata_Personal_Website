@@ -1,9 +1,22 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import PageShell from "@/components/PageShell";
+import { useDocumentMeta } from "@/lib/hooks/useDocumentMeta";
 
 const NotFound = () => {
   const location = useLocation();
+
+  // A catch-all route is still served as HTTP 200 by the SPA host, so the
+  // head is the only thing that tells a crawler this URL is dead: `noindex`
+  // plus no canonical. Without this the page inherits the homepage's title,
+  // canonical and `index,follow` — a soft 404 competing with "/".
+  useDocumentMeta({
+    title: "Page not found — Derren Winata",
+    description:
+      "That page doesn't exist. Head back to the portfolio home page or get in touch directly.",
+    path: location.pathname,
+    noindex: true,
+  });
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -26,13 +39,13 @@ const NotFound = () => {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/"
-              className="inline-flex h-10 items-center rounded-full bg-gradient-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:opacity-95 hover:shadow-[var(--glow-primary)]"
+              className="btn-primary h-10 px-5 text-sm transition-all duration-300"
             >
               Back to home
             </Link>
             <Link
               to="/contact"
-              className="inline-flex h-10 items-center rounded-full border border-border/70 bg-background/50 px-5 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+              className="inline-flex h-10 items-center rounded-md border border-border/70 bg-background/50 px-5 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
             >
               Report a broken link
             </Link>

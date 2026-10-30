@@ -7,7 +7,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 
 const PageShell = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen bg-background theme-transition overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>

@@ -8,6 +8,9 @@ import { routeMeta, siteConfig } from "@/lib/site";
 import { breadcrumbList } from "@/lib/structuredData";
 
 const CertificationsPage = () => {
+  // Derived, not typed — the lede used to hardcode "17" and would drift.
+  const certCount = certificationGroups.reduce((n, g) => n + g.items.length, 0);
+
   useDocumentMeta({
     ...routeMeta("/certifications"),
     path: "/certifications",
@@ -19,9 +22,10 @@ const CertificationsPage = () => {
       <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16">
         <Container>
           <SectionHeader
+            as="h1"
             eyebrow="Certifications"
             title="Credentials & awards."
-            lede="17 credentials earned in the past 18 months across AI/LLM, Data & Analytics, Project Management, and Finance — grouped by category."
+            lede={`${certCount} credentials earned in the past 18 months across AI/LLM, Data & Analytics, Project Management, and Finance — grouped by category.`}
           />
         </Container>
       </section>
@@ -56,10 +60,11 @@ const CertificationsPage = () => {
                             href={cert.certificateUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 font-mono text-xs text-primary hover:underline"
+                            aria-label={`View ${cert.title} certificate (opens in a new tab)`}
+                            className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-primary hover:underline"
                           >
                             View
-                            <ArrowUpRight size={12} />
+                            <ArrowUpRight size={12} aria-hidden="true" />
                           </a>
                         )}
                       </div>
@@ -95,6 +100,11 @@ const CertificationsPage = () => {
                 </ul>
               </div>
             ))}
+
+            <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Certificates are linked where they're publicly available. For the rest, just ask —
+              happy to send any of them over.
+            </p>
 
             <div>
               <div className="flex items-baseline gap-3">

@@ -1,5 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { siteConfig } from "@/lib/site";
 
 interface Props {
@@ -26,6 +26,16 @@ class ErrorBoundary extends Component<Props, State> {
     console.error("Unhandled render error:", error, info.componentStack);
   }
 
+  /**
+   * Clear the error flag so the tree can re-render. A full reload is not
+   * required, and the boundary is also remounted on navigation (see
+   * `RoutedErrorBoundary`), so a transient failure on one route no longer
+   * strands the visitor on this screen.
+   */
+  private handleRetry = () => {
+    this.setState({ hasError: false });
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -35,23 +45,31 @@ class ErrorBoundary extends Component<Props, State> {
               Something went wrong.
             </h1>
             <p className="mt-3 text-muted-foreground">
-              The page hit an unexpected error. Try reloading — and if it keeps
+              The page hit an unexpected error. Try again — and if it keeps
               happening, reach me directly.
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={this.handleRetry}
+                className="btn-primary px-5 py-2.5 text-sm"
+              >
+                Try again
+              </button>
               <Link
                 to="/"
-                className="rounded-lg bg-gradient-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
+                onClick={this.handleRetry}
+                className="text-sm font-medium text-primary underline underline-offset-2 hover:opacity-80"
               >
                 Back to home
               </Link>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="text-sm font-medium text-primary underline underline-offset-2 hover:opacity-80"
-              >
-                Email me
-              </a>
             </div>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="mt-4 inline-block text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground"
+            >
+              Email me
+            </a>
           </div>
         </div>
       );
@@ -59,6 +77,17 @@ class ErrorBoundary extends Component<Props, State> {
 
     return this.props.children;
   }
+}
+
+/**
+ * Remounts the boundary whenever the route changes, so an error caught on one
+ * page cannot follow the visitor to the next one. `ErrorBoundary` is a class
+ * with sticky state; a `key` is the cheapest way to reset it, and it must live
+ * inside the router to read the location.
+ */
+export function RoutedErrorBoundary({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  return <ErrorBoundary key={pathname}>{children}</ErrorBoundary>;
 }
 
 export default ErrorBoundary;

@@ -18,6 +18,7 @@ const ContactPage = () => {
       <section className="relative pt-28 sm:pt-36">
         <Container narrow>
           <SectionHeader
+            as="h1"
             eyebrow="Contact"
             title="Let's build something useful."
             lede="Whether you're hiring, scoping a project, or want a second pair of hands on an analytics/AI build — my inbox is open."

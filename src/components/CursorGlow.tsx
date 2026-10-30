@@ -21,9 +21,20 @@ const CursorGlow = () => {
     let rafId = 0;
 
     const animate = () => {
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
+      const dx = targetX - currentX;
+      const dy = targetY - currentY;
+      currentX += dx * 0.12;
+      currentY += dy * 0.12;
       glow.style.transform = `translate3d(${currentX - glowSize / 2}px, ${currentY - glowSize / 2}px, 0)`;
+
+      // Settle and stop. Previously this rescheduled itself unconditionally,
+      // which meant a permanent 60fps callback for as long as the page was
+      // open — even with the pointer stationary. The loop now only runs while
+      // there is distance left to cover.
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+        rafId = 0;
+        return;
+      }
       rafId = window.requestAnimationFrame(animate);
     };
 
@@ -31,6 +42,7 @@ const CursorGlow = () => {
       targetX = event.clientX;
       targetY = event.clientY;
       glow.style.opacity = "1";
+      if (!rafId) rafId = window.requestAnimationFrame(animate);
     };
 
     const handleLeave = () => {
