@@ -44,3 +44,8 @@ supabase/.temp
 # is favicon-source.png, and that path already falls back to public/favicon.png
 # when the pristine copy is absent — so a fresh clone still builds cleanly.
 assets/
+
+# Standalone three-brand design-system reference page (Pelmatech / FluxEdit /
+# Solix). Kept out of the app build and the repo: it is a design artifact, not
+# a route. Only the Solix system was carried into src/index.css.
+design-showcase/
