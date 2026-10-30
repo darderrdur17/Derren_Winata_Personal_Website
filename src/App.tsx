@@ -22,7 +22,11 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    {/* Follows the OS colour scheme on a first visit (`defaultTheme="system"`
+        + `enableSystem`), then honours whatever the visitor picks in the
+        navbar toggle. Both palettes are full Solix systems: light is the
+        white-ground one, dark is the midnight-navy variant. */}
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <TooltipProvider>
         <Toaster />
         <Sonner />

@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
             <div className="animate-reveal delay-300 flex flex-wrap items-center gap-3">
               <a
                 href="#selected-work"
-                className="group inline-flex h-12 items-center gap-2 rounded-full bg-gradient-primary px-6 text-sm font-medium text-primary-foreground transition-all duration-300 hover:opacity-95 hover:shadow-[var(--glow-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="btn-primary group h-12 px-6 text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 See selected work
                 <ArrowUpRight
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
                 href={siteConfig.resumeHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex h-12 items-center gap-2 rounded-full border border-border/70 bg-background/50 px-6 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group inline-flex h-12 items-center gap-2 rounded-md border border-border/70 bg-background/50 px-6 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <FileText size={14} />
                 Resume (PDF)
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="rounded-full border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+                className="rounded-md border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
               >
                 <Github size={16} />
               </a>
@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="rounded-full border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+                className="rounded-md border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
               >
                 <Linkedin size={16} />
               </a>
@@ -128,9 +128,9 @@ const Hero: React.FC = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-primary">
+                  <span className="badge-accent font-mono uppercase tracking-[0.14em]">
                     Now
-                  </p>
+                  </span>
                   <p className="text-sm font-medium text-foreground">
                     Open to full-time roles — {siteConfig.location}.
                   </p>
@@ -157,7 +157,7 @@ const Hero: React.FC = () => {
       <a
         href="#proof"
         aria-label="Scroll to proof"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur transition-colors hover:border-primary/60 hover:text-primary md:inline-flex"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-md border border-border/60 bg-background/60 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur transition-colors hover:border-primary/60 hover:text-primary md:inline-flex"
       >
         Scroll
         <ArrowDown size={12} className="animate-bounce" />

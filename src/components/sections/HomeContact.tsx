@@ -40,7 +40,7 @@ export function HomeContact() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="group inline-flex h-12 items-center gap-2 rounded-full bg-gradient-primary px-6 text-sm font-medium text-primary-foreground transition-all duration-300 hover:opacity-95 hover:shadow-[var(--glow-primary)]"
+              className="btn-primary group h-12 px-6 text-sm transition-all duration-300"
             >
               <Mail size={16} />
               {siteConfig.email}
@@ -53,7 +53,7 @@ export function HomeContact() {
               href={siteConfig.resumeHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex h-12 items-center gap-2 rounded-full border border-border/70 bg-background/50 px-6 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+              className="group inline-flex h-12 items-center gap-2 rounded-md border border-border/70 bg-background/50 px-6 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
             >
               <FileText size={16} />
               Resume (PDF)
@@ -63,7 +63,7 @@ export function HomeContact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border/70 bg-background/50 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-border/70 bg-background/50 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
             >
               <Linkedin size={16} />
             </a>
@@ -72,7 +72,7 @@ export function HomeContact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border/70 bg-background/50 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-border/70 bg-background/50 text-muted-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
             >
               <Github size={16} />
             </a>

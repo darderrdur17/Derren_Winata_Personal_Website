@@ -28,7 +28,7 @@ const ScrollProgress = () => {
         className="absolute top-0 h-full w-8 transition-all duration-100 ease-out"
         style={{
           left: `calc(${progress}% - 16px)`,
-          background: "linear-gradient(90deg, transparent, hsl(174 72% 56% / 0.6), transparent)",
+          background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.55), transparent)",
           filter: "blur(4px)",
           opacity: progress > 0 ? 1 : 0,
         }}
