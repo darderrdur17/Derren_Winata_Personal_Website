@@ -37,6 +37,7 @@ export const homeGridTitles = [
   "ApexIQ",
   "TennisIQ",
   "ViralIQ",
+  "VisionCount",
   "DDOG Earnings Tracker",
 ] as const;
 
@@ -66,7 +67,7 @@ export const projects: Project[] = [
       "Added stage-aware forecasts so a model only sees the part of the weekend it is allowed to",
       "Shipped a zero-framework ES-module frontend on ECharts over a containerised API",
     ],
-    tech: ["JavaScript", "ECharts", "Docker"],
+    tech: ["Python", "FastAPI", "scikit-learn", "ECharts"],
     href: "https://apexiq-theta.vercel.app",
   },
   {
@@ -76,7 +77,7 @@ export const projects: Project[] = [
     insight:
       "The two tours are not one problem, so nothing is pooled: each tour gets its own model, ratings, and backtest, and accuracy is only ever quoted on seasons the model never trained on — measured against a coin flip rather than against itself.",
     outcomes: [
-      "Trained separate ATP and WTA models on 124,000+ matches and 4,700+ tournaments",
+      "Trained separate ATP and WTA models on 118,210 matches and 4,594 tournaments",
       "Held 64.7% winner accuracy on unseen seasons — 14.7 points over a coin flip",
       "Added Elo ratings, player comparison, and a live tracker of hit rate and Brier score",
     ],
@@ -98,6 +99,22 @@ export const projects: Project[] = [
     // The repo is private, so this points at the live demo rather than a
     // GitHub URL that would 404 for every visitor.
     href: "https://vercel-mu-ochre-19.vercel.app",
+  },
+  {
+    title: "VisionCount",
+    summary:
+      "A browser-based object-counting tool: upload an image or video, choose the COCO classes, and get a trend chart, per-class breakdown, and CSV/PNG exports.",
+    insight:
+      "The hard part was keeping the output honest. A per-frame count is an occupancy snapshot, not a visitor count, so the web job makes no hourly claim, expires uploads after an hour, and puts the hand-count check next to the result. The validated person/video preset stays clearly separate from configurations the tool supports but has not validated.",
+    outcomes: [
+      "Built a torch-free ONNX Runtime service so visitors can upload and re-analyse media directly in the browser",
+      "Reached 5.6% MAPE with 10/10 frames within ±15% on one hand-counted clip for the validated CLI preset",
+      "Added bounded async jobs (150 MB, 90 s, one-hour retention) with per-class counts, CSV and provenance-bearing PNG export",
+      "Turned five governance controls — purpose limitation, minimisation, transparency, oversight, proportionality — into visible product features",
+    ],
+    tech: ["Python", "FastAPI", "ONNX Runtime", "React", "TypeScript"],
+    // Private research repo; this is the live, public-safe upload demo.
+    href: "https://wbapp-vrescrbv4bbwwobmgzdjzo.apps.workbuddy.host/?sharecode=OCBYTARI4K",
   },
   {
     title: "EQ-5D-5L TTO Research Tool",

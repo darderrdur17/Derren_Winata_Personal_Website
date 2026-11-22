@@ -259,6 +259,7 @@ EXPERIENCE = [
 ]
 
 PROJECTS = [
+    "<b>VisionCount</b> &mdash; Python, ONNX Runtime, React &middot; browser upload tool counting objects in uploaded video/images; validated preset 5.6% MAPE, 10/10 frames within &plusmn;15%",
     "<b>360 Cogni</b> &mdash; React 19, React Native, Supabase &middot; dementia and cognitive health platform, live at 360cogni.com (1,000+ user target)",
     "<b>EQ-5D-5L TTO Research Tool</b> &mdash; React, Node.js, PostgreSQL &middot; real-time health-economics utility scoring with an AI co-pilot, WCAG 2.1 AA and GDPR-aligned",
     "<b>Bayesian Pair Trading</b> &mdash; Python, Optuna &middot; walk-forward optimised S&amp;P 500 pairs trading with dual cointegration testing",

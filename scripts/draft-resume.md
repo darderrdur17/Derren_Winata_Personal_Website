@@ -117,7 +117,10 @@ Eleven roles, newest first. Bullets are taken verbatim from `experiences.ts` exc
 
 ## Selected Projects
 
-Six projects, order and content from `projects.ts`. Links omitted by design — add your own in the template.
+Seven projects, newest first. Links omitted by design — add your own in the template.
+
+**VisionCount** — *Python, FastAPI, ONNX Runtime, React, TypeScript*
+Reusable object-counting tool for video and images. Added a browser upload path with bounded background jobs, per-class counts, CSV/PNG export, one-hour retention and no hourly extrapolation for uploads. Validated person/video preset: 5.6% MAPE, 10/10 frames within ±15% on one hand-counted clip (not a general accuracy claim).
 
 **360 Cogni** — *React 19, React Native, Supabase*
 Dementia and cognitive health platform with screening, brain training, and caregiver tools. Defined MVP scope, aligned UX flows and integrations around a 1,000+ user target, and shipped a live product at 360cogni.com.

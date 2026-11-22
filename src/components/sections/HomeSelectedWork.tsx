@@ -55,7 +55,7 @@ export function HomeSelectedWork() {
           />
         </div>
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {rest.map((p) => (
             <li key={p.title}>
               <ProjectCard

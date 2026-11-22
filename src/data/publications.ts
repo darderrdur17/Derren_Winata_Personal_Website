@@ -35,6 +35,7 @@ export const publications: Publication[] = [
       "First author — framing the research question, structure, and argument",
       "PWA delivery model for levy collection and the visitor experience",
       "AI governance considerations for the system's automated components",
+      "Built the crowd-counting prototype into a browser upload tool with aggregate counts, a hand-count check, and a privacy/ethics note",
     ],
     tags: ["Research", "PWA", "AI Governance"],
   },
